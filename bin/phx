@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php'] as $file) {
+	if (true === file_exists($file)) {
+		require_once $file;
+		break;
+	}
+}
+
+// Remove bin/phx entry from arguments
+array_shift($argv);
+--$argc;
+
+$scriptPath = realpath($argv[0]);
+
+if (false === file_exists($scriptPath)) {
+	die(sprintf('Could not open input file: %s'.PHP_EOL, $argv[0]));
+}
+
+$lexer = new \phx\Lexer\PhxLexer();
+$parser = new \phx\Parser\Phx($lexer, []);
+$prettyPrinter = new \PhpParser\PrettyPrinter\Standard();
+
+$result = $parser->parse(file_get_contents($scriptPath));
+$code = $prettyPrinter->prettyPrint($result);
+
+eval($code);

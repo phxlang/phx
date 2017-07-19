@@ -1,0 +1,13 @@
+{
+    "require": {
+        "nikic/php-parser": "^3.0"
+    },
+    "bin": [
+        "bin/build"
+    ],
+    "autoload": {
+        "psr-4": {
+            "phx\\": "src/"
+        }
+    }
+}

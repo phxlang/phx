@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php'] as $file) {
+	if (true === file_exists($file)) {
+		require_once $file;
+		break;
+	}
+}
+
+$parser = new phx\Parser\ParserBuilder();
+$parser->build();
