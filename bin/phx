@@ -1,11 +1,19 @@
 #!/usr/bin/env php
 <?php
 
+$loader = null;
+
 foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php'] as $file) {
 	if (true === file_exists($file)) {
-		require_once $file;
+        require_once $loader = $file;
 		break;
 	}
+}
+
+if (null === $loader) {
+    echo 'You must set up the project dependencies using `composer install`'.PHP_EOL.
+        'See https://getcomposer.org/download/ for instructions on installing Composer'.PHP_EOL;
+    exit(1);
 }
 
 // Remove bin/phx entry from arguments
