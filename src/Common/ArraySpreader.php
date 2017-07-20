@@ -45,7 +45,7 @@ class ArraySpreader extends NodeVisitorAbstract
             //var_dump($id, $dumper->dump($node)); echo '------------------------>',PHP_EOL;
 
             return new Node\Expr\ArrayItem(new Node\Scalar\String_($id));
-        } elseif ($this->currentArrayNode === null || $node !== $this->currentArrayNode->node->getAttribute(NodeConnector::ATTR_PARENT)) {
+        } elseif ($this->currentArrayNode === null /*|| $node !== $this->currentArrayNode->node->getAttribute(NodeConnector::ATTR_PARENT)*/) {
 	        if ($this->currentArrayNode !== null) {
                 echo 'skip that: ', get_class($this->currentArrayNode->node->getAttribute(NodeConnector::ATTR_PARENT)), PHP_EOL;
             }
