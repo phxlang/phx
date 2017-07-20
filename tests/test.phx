@@ -13,9 +13,10 @@ function getIds()
 $crazy = ['my'];
 $otherItems = ['hello', ...$crazy, 'world'];
 $otherItems2 = ['baz'];
-$items = ['foo', ...$otherItems, ...getIds(), 'bar', ...$otherItems2];
+//$items = ['foo', ...$otherItems, ...getIds(), 'bar', ...$otherItems2];
 
-//$items = ['foo', ...$otherItems, ...([...$crazy, 'meow']), 'bar', ...$otherItems2];
+// This needs recursive thinking
+$items = ['foo', ...$otherItems, ...([...$crazy, 'meow']), 'bar', ...$otherItems2];
 
 // for (... in ...)
 for ($item in $items) {

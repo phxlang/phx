@@ -48,9 +48,11 @@ if ($argc === 0) {
 	$traverser->addVisitor($arraySpreader);
 
 	$stmts = $parser->parse(file_get_contents($scriptPath));
-	$stmts = $traverser->traverse($stmts);
+    echo $nodeDumper->dump($stmts); exit;
 
-//echo $nodeDumper->dump($stmts); exit;
+    $stmts = $traverser->traverse($stmts);
+
+echo $nodeDumper->dump($stmts); exit;
 	$code = $prettyPrinter->prettyPrint($stmts);
 	file_put_contents(getcwd().'/dump.php', '<?php'.PHP_EOL.$code);
 	eval($code);
