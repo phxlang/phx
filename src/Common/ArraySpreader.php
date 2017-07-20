@@ -2,10 +2,7 @@
 
 namespace Phx\Common;
 
-use PhpParser\BuilderFactory;
 use PhpParser\Node;
-use PhpParser\NodeDumper;
-use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitorAbstract;
 use Phx\Parser\Node\Expr\UnpackArrayItem;
 
@@ -14,96 +11,80 @@ use Phx\Parser\Node\Expr\UnpackArrayItem;
  */
 class ArraySpreader extends NodeVisitorAbstract
 {
-    /** @var NodeRef[] */
-	private $currentArrayNodes = [];
+    /** @var UnpackArrayItem */
+	private $currentUnpackArrayItem = null;
 
-	/** @var null|NodeRef */
-	private $currentArrayNode = null;
-
-	/** @var array */
-	private $unpacks = [];
+	private $lastIds = [];
+	private $uses = [];
 
 	public function enterNode(Node $node)
 	{
-        if (true === $node instanceof Node\Expr\Array_) {
-            //var_dump('uhh oh I found an array: ' . count($node->items));
-            $this->currentArrayNode = $this->currentArrayNodes[] = new NodeRef($node);
-            //echo 'array stack: ' , count($this->currentArrayNodes) , PHP_EOL;
+        if ($node instanceof UnpackArrayItem) {
+        	$this->currentUnpackArrayItem = $node;
         }
 
 		return null;
 	}
 
-	public function leaveNode(Node $node) {
-	    $dumper = new NodeDumper();
-	    if ($node instanceof UnpackArrayItem) {
-	        $id = '__spread_'.uniqid();
-            $this->currentArrayNode->unpacks[$id] = $node;
+	public function leaveNode(Node $node)
+	{
+		if ($node instanceof UnpackArrayItem) {
+			$id = '__spread_'.uniqid();
+			$this->lastIds[$id] = $node;
+			return new Node\Expr\ArrayItem(new Node\Scalar\String_($id));
+		}
 
-            echo 'spread: ',$id,PHP_EOL;
-
-            //var_dump($id, $dumper->dump($node)); echo '------------------------>',PHP_EOL;
-
-            return new Node\Expr\ArrayItem(new Node\Scalar\String_($id));
-        } elseif ($this->currentArrayNode === null /*|| $node !== $this->currentArrayNode->node->getAttribute(NodeConnector::ATTR_PARENT)*/) {
-	        if ($this->currentArrayNode !== null) {
-                echo 'skip that: ', get_class($this->currentArrayNode->node->getAttribute(NodeConnector::ATTR_PARENT)), PHP_EOL;
-            }
-            return null;
-        }
-        echo $dumper->dump($node);
-        $spliceNodes = [$node];
-foreach ($this->currentArrayNode->unpacks as $id => $unpackNode) {
-    echo PHP_EOL,'----------',PHP_EOL; var_dump($id, $dumper->dump($unpackNode));
-}
-        echo PHP_EOL,'------------------------>',PHP_EOL;
-        foreach ($this->currentArrayNode->unpacks as $id => $unpack) {
-            /** @var Node $parent */
-			$prev = $this->currentArrayNode->node->getAttribute(NodeConnector::ATTR_PREV);
-
-			$unpackNode = $unpack->value;
-
-            $spliceNodes[] = new Node\Expr\FuncCall(
-                new Node\Name('array_splice'),
-                [
-                    $prev,
-                    new Node\Expr\FuncCall(
-                        new Node\Name('array_search'),
-                        [
-                            new Node\Scalar\String_($id),
-                            $prev,
-                        ]
-                    ),
-                    new Node\Scalar\LNumber(1),
-                    $unpackNode
-                ]
-            );
+	    if (
+	    	$this->currentUnpackArrayItem === null
+		    || $node !== ($parent = $this->currentUnpackArrayItem->getAttribute(NodeConnector::ATTR_PARENT))
+	    ) {
+	        return null;
         }
 
-        array_pop($this->currentArrayNodes);
+		$splices = [
+			new Node\Expr\Assign(
+				new Node\Expr\Variable('array'),
+				$parent
+			),
+		];
 
-        if (false === $this->currentArrayNode = end($this->currentArrayNodes)) {
-            $this->currentArrayNode = null;
-        }
+		foreach ($this->lastIds as $id => $node) {
+			if ($node->value instanceof Node\Expr\Variable) {
+				$this->uses[$node->value->name] = $node->value;
+			}
 
-        return $spliceNodes;
+			$splices[] = new Node\Expr\FuncCall(
+				new Node\Name('array_splice'),
+				[
+					new Node\Expr\Variable('array'),
+					new Node\Expr\FuncCall(
+						new Node\Name('array_search'),
+						[
+							new Node\Scalar\String_($id),
+							new Node\Expr\Variable('array'),
+						]
+					),
+					new Node\Scalar\LNumber(1),
+					$node->value
+				]
+			);
+		}
+
+		$splices[] = new Node\Stmt\Return_(
+			new Node\Expr\Variable('array')
+		);
+
+		$node = new Node\Expr\FuncCall(
+			new Node\Expr\Closure(
+				[
+					'uses' => array_values($this->uses),
+					'stmts' => $splices
+				]
+			)
+		);
+
+		$this->lastIds = [];
+
+		return $node;
 	}
-}
-
-class NodeRef
-{
-    /** @var Node\Expr\Array_ */
-    public $node = null;
-
-    /** @var array UnpackArrayItem[] */
-    public $unpacks = [];
-
-    /**
-     * NodeRef constructor.
-     * @param null $node
-     */
-    public function __construct($node)
-    {
-        $this->node = $node;
-    }
 }
