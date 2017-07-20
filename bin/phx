@@ -11,8 +11,8 @@ foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php
 }
 
 if (null === $loader) {
-    echo 'You must set up the project dependencies using `composer install`'.PHP_EOL.
-        'See https://getcomposer.org/download/ for instructions on installing Composer'.PHP_EOL;
+    echo 'You must set up the project dependencies using `composer install`' , PHP_EOL ,
+        'See https://getcomposer.org/download/ for instructions on installing Composer' , PHP_EOL;
     exit(1);
 }
 
@@ -28,6 +28,21 @@ if ($argc === 0) {
 	}
 
 	fclose($handle);
+} elseif ('-v' === $argv[0]) {
+    echo 'Phx 0.0.1', PHP_EOL;
+    echo 'Copyright (c) 2017 The Phx Group', PHP_EOL;
+    echo 'Powered by PHP ', phpversion(), ', Copyright (c) 1997-', date('Y'), ' The PHP Group', PHP_EOL;
+    exit(0);
+} elseif ('-h' === $argv[0]) {
+    printHelp();
+} elseif ('-r' === $argv[0]) {
+    if (2 !== count($argv)) {
+        printHelp();
+    }
+
+    $transpiler = getTranspiler();
+    eval($transpiler->fromString('<?php ' . $argv[1]));
+    exit(0);
 } else {
 	$scriptPath = realpath($argv[0]);
 
@@ -36,18 +51,33 @@ if ($argc === 0) {
     ];
 
 	if(false === file_exists($scriptPath)) {
-		die(sprintf('Could not open input file: %s' . PHP_EOL, $argv[0]));
+		echo sprintf('Could not open input file: %s' , PHP_EOL, $argv[0]);
+        exit(1);
 	}
 
-	$transpiler = \Phx\Common\TranspilerBuilder::create()
-        ->setParser(new \Phx\Parser\Phx(new \Phx\Lexer\PhxLexer()))
-        ->setPrinter(new \PhpParser\PrettyPrinter\Standard())
-        ->registerExtension(new \Phx\Extension\Spread\SpreadExtension())
-        ->registerExtension(new \Phx\Extension\ForIn\ForInExtension())
-        ->build();
+	$transpiler = getTranspiler();
 
     $code = $transpiler->fromFile($scriptPath);
 
 	file_put_contents(getcwd().'/dump.php', '<?php'.PHP_EOL.$code);
 	eval($code);
+	exit(0);
+}
+
+function getTranspiler(): \Phx\Common\Transpiler
+{
+    return \Phx\Common\TranspilerBuilder::create()
+        ->setParser(new \Phx\Parser\Phx(new \Phx\Lexer\PhxLexer()))
+        ->setPrinter(new \PhpParser\PrettyPrinter\Standard())
+        ->registerExtension(new \Phx\Extension\Spread\SpreadExtension())
+        ->registerExtension(new \Phx\Extension\ForIn\ForInExtension())
+        ->build();
+}
+
+function printHelp(): string
+{
+    echo 'Usage: phx [options] [-f] <file> [--] [args...]' , PHP_EOL;
+    echo '   -r <code>  Run PHP <code> without using script tags <?..?>' , PHP_EOL;
+    echo '   -v         Version number' , PHP_EOL;
+    exit(0);
 }
