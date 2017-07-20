@@ -4,10 +4,15 @@ if ($argc > 1) {
 	var_dump($argv);
 }
 
-$otherItems = [2 => 'baz'];
-$items = [0 => 'foo', ...$otherItems, 1 => 'bar'];
+$crazy = ['my'];
+$otherItems = ['hello', ...$crazy, 'world'];
+$otherItems2 = ['baz'];
+$items = ['foo', ...$otherItems, 'bar', ...$otherItems2];
+//$items = ['foo', ...$otherItems, ...([...$crazy, 'meow']), 'bar', ...$otherItems2];
 
 // for (... in ...)
 for ($item in $items) {
 	echo $item , PHP_EOL;
 }
+
+//[$itemOne, ...$others, $secondLast, $last] = $items;

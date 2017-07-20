@@ -27,9 +27,9 @@ class ParserBuilder
 		];
 
 		$tokensFile     = $grammarDir . '/tokens.y';
+		$skeletonFile   = $grammarDir . '/parser.template';
 		$tokensTemplate = $phpParserVendorDir . '/grammar/tokens.template';
-		$skeletonFile   = $phpParserVendorDir . '/grammar/parser.template';
-		$tmpIdentifier = uniqid();
+		$tmpIdentifier  = uniqid();
 		$tmpGrammarFile = sys_get_temp_dir().'/'.$tmpIdentifier.'_tmp_parser.phpy';
 		$tmpResultFile  = sys_get_temp_dir().'/'.$tmpIdentifier.'_tmp_parser.php';
 		$tokensResultsFile = $resultDir . '/Tokens.php';

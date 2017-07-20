@@ -14,55 +14,76 @@ use Phx\Parser\Node\Expr\UnpackArrayItem;
  */
 class ArraySpreader extends NodeVisitorAbstract
 {
-	/** @var UnpackArrayItem|null */
-	private $currentUnpackNode = null;
+    /** @var null|Node\Expr\Array_ */
+	private $currentArrayNode = null;
 
-	/** @var Node[] */
-	private $items = [];
+	/** @var array */
+	private $unpacks = [];
+
+	/** @var int */
+	private $pos = 0;
+
+	/** @var array */
+	private $arrayCounts = [];
 
 	public function enterNode(Node $node)
 	{
 		// Take all further ArrayItems out of the array,
 		// Append new statement for array += spreaded variable,
 		// Append new array node with rest of ArrayItems
-		if (true === $node instanceof UnpackArrayItem) {
-			$this->currentUnpackNode = $node;
-		}
+        if (true === $node instanceof Node\Expr\Array_) {
+            $this->currentArrayNode = $node;
+
+            // Keep track of array elements
+            $var = $node->getAttribute(NodeConnector::ATTR_PREV);
+            $this->arrayCounts[$var->name] = count($node->items);
+        } elseif (true === $node instanceof UnpackArrayItem) {
+            $this->unpacks[] = [
+                'node' => $node,
+                'pos' => $this->pos
+            ];
+        } elseif (true === $node instanceof Node\Expr\ArrayItem) {
+            ++$this->pos;
+        }
+
+		return null;
 	}
 
 	public function leaveNode(Node $node) {
-		if (null === $this->currentUnpackNode) {
-			return null;
-		}
+	    if ($node instanceof UnpackArrayItem) {
+	        return NodeTraverser::REMOVE_NODE;
+        } elseif ($this->currentArrayNode === null || $node !== $this->currentArrayNode->getAttribute(NodeConnector::ATTR_PARENT)) {
+	        return null;
+        }
 
-		if ($node === $this->currentUnpackNode) {
-			return NodeTraverser::REMOVE_NODE;
-		}
+        $sliceNodes = [$node];
+	    $offset = 0;
 
-		if ($node->getAttribute(NodeConnector::ATTR_PARENT) === $this->currentUnpackNode->getAttribute(NodeConnector::ATTR_PARENT)) {
-			$this->items[] = $node;
-			return NodeTraverser::REMOVE_NODE;
-		} elseif ($node === $this->currentUnpackNode->getAttribute(NodeConnector::ATTR_PARENT)->getAttribute(NodeConnector::ATTR_PARENT)) {
-			/** @var Node $parent */
-			$parent = $this->currentUnpackNode->getAttribute(NodeConnector::ATTR_PARENT);
-			/** @var Node\Expr\Variable $node3 */
-			$node3 = $parent->getAttribute(NodeConnector::ATTR_PREV);
+        foreach ($this->unpacks as $unpack) {
+            //echo 'do an unpack of ' , $unpack['node']->value->name , ' (count: ',$this->arrayCounts[$unpack['node']->value->name],') at pos ' ,  $unpack['pos'] , PHP_EOL;
+            /** @var Node $parent */
+			$prev = $this->currentArrayNode->getAttribute(NodeConnector::ATTR_PREV);
 
-			$plusSpreadArrayNode = new Node\Expr\AssignOp\Plus(
-				new Node\Expr\Variable($node3->name),
-				$this->currentUnpackNode->value
-			);
+			$unpackNode = $unpack['node']->value;
+			$unpackPos = $unpack['pos'];
 
-			// @todo use array_splice?
-			$plusOtherArrayItemsNode = new Node\Expr\AssignOp\Plus(
-				new Node\Expr\Variable($node3->name),
-				new Node\Expr\Array_($this->items)
-			);
+            $sliceNodes[] = new Node\Expr\FuncCall(
+                new Node\Name('array_splice'),
+                [
+                    $prev,
+                    new Node\Scalar\LNumber($unpackPos+$offset),
+                    new Node\Scalar\LNumber(0),
+                    $unpackNode
+                ]
+            );
 
-			$this->items = null;
-			$this->currentUnpackNode = null;
+            $offset += $this->arrayCounts[$unpack['node']->value->name];
+        }
 
-			return [$node, $plusSpreadArrayNode, $plusOtherArrayItemsNode];
-		}
+        $this->currentArrayNode = null;
+        $this->unpacks = [];
+        $this->pos = 0;
+
+        return $sliceNodes;
 	}
 }
