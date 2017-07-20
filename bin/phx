@@ -35,12 +35,23 @@ if ($argc === 0) {
 		die(sprintf('Could not open input file: %s' . PHP_EOL, $argv[0]));
 	}
 
-	$lexer = new \phx\Lexer\PhxLexer();
-	$parser = new \phx\Parser\Phx($lexer, []);
+	$lexer = new \Phx\Lexer\PhxLexer();
+	$parser = new \Phx\Parser\Phx($lexer, []);
+	$nodeDumper = new \PhpParser\NodeDumper;
 	$prettyPrinter = new \PhpParser\PrettyPrinter\Standard();
 
-	$result = $parser->parse(file_get_contents($scriptPath));
-	$code = $prettyPrinter->prettyPrint($result);
+	$nodeConnector =  new \Phx\Common\NodeConnector();
+	$arraySpreader = new \Phx\Common\ArraySpreader();
 
+	$traverser = new \PhpParser\NodeTraverser();
+	$traverser->addVisitor($nodeConnector);
+	$traverser->addVisitor($arraySpreader);
+
+	$stmts = $parser->parse(file_get_contents($scriptPath));
+	$stmts = $traverser->traverse($stmts);
+
+var_dump($nodeDumper->dump($stmts)); exit;
+	$code = $prettyPrinter->prettyPrint($stmts);
+	echo $code; exit;
 	eval($code);
 }

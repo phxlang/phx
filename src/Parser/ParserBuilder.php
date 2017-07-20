@@ -1,6 +1,6 @@
 <?php
 
-namespace phx\Parser;
+namespace Phx\Parser;
 
 class ParserBuilder
 {
@@ -18,17 +18,20 @@ class ParserBuilder
 
 	public function build(array $options = [])
 	{
+		$grammarDir = __DIR__ . '/../../grammar';
+		$phpParserVendorDir = __DIR__ . '/../../vendor/nikic/php-parser';
+		$resultDir = __DIR__;
+
 		$grammarFileToName = [
-			__DIR__ . '/phpN.y' => 'Phx',
+			$grammarDir . '/phpN.y' => 'Phx',
 		];
 
-		$tokensFile     = __DIR__ . '/tokens.y';
-		$tokensTemplate = __DIR__ . '/../../vendor/nikic/php-parser/grammar/tokens.template';
-		$skeletonFile   = __DIR__ . '/../../vendor/nikic/php-parser/grammar/parser.template';
+		$tokensFile     = $grammarDir . '/tokens.y';
+		$tokensTemplate = $phpParserVendorDir . '/grammar/tokens.template';
+		$skeletonFile   = $phpParserVendorDir . '/grammar/parser.template';
 		$tmpIdentifier = uniqid();
 		$tmpGrammarFile = sys_get_temp_dir().'/'.$tmpIdentifier.'_tmp_parser.phpy';
 		$tmpResultFile  = sys_get_temp_dir().'/'.$tmpIdentifier.'_tmp_parser.php';
-		$resultDir = __DIR__;
 		$tokensResultsFile = $resultDir . '/Tokens.php';
 
 		// check for kmyacc.exe binary in this directory, otherwise fall back to global name

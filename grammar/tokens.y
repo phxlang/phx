@@ -56,7 +56,6 @@
 %token T_DECLARE
 %token T_ENDDECLARE
 %token T_AS
-%token T_IN
 %token T_SWITCH
 %token T_ENDSWITCH
 %token T_CASE
@@ -112,3 +111,4 @@
 %token T_DIR
 %token T_NS_SEPARATOR
 %token T_ELLIPSIS
+%token T_IN
