@@ -1,14 +1,13 @@
 <?phx
 
-/*if ($argc > 1) {
+if ($argc > 1) {
 	var_dump($argv);
-}*/
+}
 
-$otherItems = ['baz'];
-
-$items = ['foo', ...$otherItems, 'bar'];
+$otherItems = [2 => 'baz'];
+$items = [0 => 'foo', ...$otherItems, 1 => 'bar'];
 
 // for (... in ...)
-/*for ($item in $items) {
+for ($item in $items) {
 	echo $item , PHP_EOL;
-}*/
+}

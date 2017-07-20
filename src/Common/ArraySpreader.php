@@ -31,10 +31,6 @@ class ArraySpreader extends NodeVisitorAbstract
 	}
 
 	public function leaveNode(Node $node) {
-		/*if (false === $node instanceof UnpackArrayItem) {
-			return null;
-		}
-		return NodeTraverser::REMOVE_NODE;*/
 		if (null === $this->currentUnpackNode) {
 			return null;
 		}
@@ -46,11 +42,7 @@ class ArraySpreader extends NodeVisitorAbstract
 		if ($node->getAttribute(NodeConnector::ATTR_PARENT) === $this->currentUnpackNode->getAttribute(NodeConnector::ATTR_PARENT)) {
 			$this->items[] = $node;
 			return NodeTraverser::REMOVE_NODE;
-		} elseif ($node === $this->currentUnpackNode->getAttribute(NodeConnector::ATTR_PARENT)) {
-			// end of array node -> append
-
-			// append += $unpackArray
-
+		} elseif ($node === $this->currentUnpackNode->getAttribute(NodeConnector::ATTR_PARENT)->getAttribute(NodeConnector::ATTR_PARENT)) {
 			/** @var Node $parent */
 			$parent = $this->currentUnpackNode->getAttribute(NodeConnector::ATTR_PARENT);
 			/** @var Node\Expr\Variable $node3 */
@@ -61,16 +53,16 @@ class ArraySpreader extends NodeVisitorAbstract
 				$this->currentUnpackNode->value
 			);
 
-			$node2 = new Node\Expr\AssignOp\Plus(
+			// @todo use array_splice?
+			$plusOtherArrayItemsNode = new Node\Expr\AssignOp\Plus(
 				new Node\Expr\Variable($node3->name),
 				new Node\Expr\Array_($this->items)
 			);
 
-			$nodeDumper = new NodeDumper();
-			var_dump($nodeDumper->dump($node->getAttributes(NodeConnector::ATTR_PARENT))); exit;
-			/*var_dump($nodeDumper->dump($node));
-			var_dump($nodeDumper->dump($node2)); exit;*/
-			return [$plusSpreadArrayNode, $node2];
+			$this->items = null;
+			$this->currentUnpackNode = null;
+
+			return [$node, $plusSpreadArrayNode, $plusOtherArrayItemsNode];
 		}
 	}
 }

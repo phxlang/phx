@@ -50,8 +50,8 @@ if ($argc === 0) {
 	$stmts = $parser->parse(file_get_contents($scriptPath));
 	$stmts = $traverser->traverse($stmts);
 
-var_dump($nodeDumper->dump($stmts)); exit;
+//var_dump($nodeDumper->dump($stmts)); exit;
 	$code = $prettyPrinter->prettyPrint($stmts);
-	echo $code; exit;
+	file_put_contents(getcwd().'/dump.php', '<?php'.PHP_EOL.$code);
 	eval($code);
 }
