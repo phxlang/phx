@@ -31,29 +31,22 @@ if ($argc === 0) {
 } else {
 	$scriptPath = realpath($argv[0]);
 
+	$extensions = [
+
+    ];
+
 	if(false === file_exists($scriptPath)) {
 		die(sprintf('Could not open input file: %s' . PHP_EOL, $argv[0]));
 	}
 
-	$lexer = new \Phx\Lexer\PhxLexer();
-	$parser = new \Phx\Parser\Phx($lexer, []);
-	$nodeDumper = new \PhpParser\NodeDumper;
-	$prettyPrinter = new \PhpParser\PrettyPrinter\Standard();
+	$transpiler = \Phx\Common\TranspilerBuilder::create()
+        ->setParser(new \Phx\Parser\Phx(new \Phx\Lexer\PhxLexer()))
+        ->setPrinter(new \PhpParser\PrettyPrinter\Standard())
+        ->registerExtension(new \Phx\Extension\Spread\SpreadExtension())
+        ->build();
 
-	$nodeConnector =  new \Phx\Common\NodeConnector();
-	$arraySpreader = new \Phx\Common\ArraySpreader();
+    $code = $transpiler->fromFile($scriptPath);
 
-	$traverser = new \PhpParser\NodeTraverser();
-	$traverser->addVisitor($nodeConnector);
-	$traverser->addVisitor($arraySpreader);
-
-	$stmts = $parser->parse(file_get_contents($scriptPath));
-    //echo $nodeDumper->dump($stmts); exit;
-
-    $stmts = $traverser->traverse($stmts);
-    //echo $nodeDumper->dump($stmts); exit;
-
-    $code = $prettyPrinter->prettyPrint($stmts);
 	file_put_contents(getcwd().'/dump.php', '<?php'.PHP_EOL.$code);
 	eval($code);
 }
