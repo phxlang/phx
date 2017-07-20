@@ -43,6 +43,7 @@ if ($argc === 0) {
         ->setParser(new \Phx\Parser\Phx(new \Phx\Lexer\PhxLexer()))
         ->setPrinter(new \PhpParser\PrettyPrinter\Standard())
         ->registerExtension(new \Phx\Extension\Spread\SpreadExtension())
+        ->registerExtension(new \Phx\Extension\ForIn\ForInExtension())
         ->build();
 
     $code = $transpiler->fromFile($scriptPath);
