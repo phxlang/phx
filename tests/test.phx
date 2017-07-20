@@ -4,10 +4,17 @@ if ($argc > 1) {
 	var_dump($argv);
 }
 
+function getIds()
+{
+    return [3,4,5];
+}
+
+// Results in array: ['foo', 'hello', 'my', 'world', 3, 4, 5, 'bar', 'baz']
 $crazy = ['my'];
 $otherItems = ['hello', ...$crazy, 'world'];
 $otherItems2 = ['baz'];
-$items = ['foo', ...$otherItems, 'bar', ...$otherItems2];
+$items = ['foo', ...$otherItems, ...getIds(), 'bar', ...$otherItems2];
+
 //$items = ['foo', ...$otherItems, ...([...$crazy, 'meow']), 'bar', ...$otherItems2];
 
 // for (... in ...)
