@@ -46,55 +46,56 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
 			return new Node\Expr\ArrayItem(new Node\Scalar\String_($id));
 		}
 
+        if ($node === $this->dumpedArray) {
+            $replaces = array_merge([$this->dumpedArray], $this->dumpedArraySplices);
+
+            $this->dumpedArray = null;
+            $this->dumpedArraySplices = [];
+
+            return $replaces;
+        }
+
 	    if (false === $node instanceof Node\Expr\Array_) {
 	        return null;
         }
 
-        $dumper = new NodeDumper();
-
         /** @var Node\Expr\Array_ $node */
 
-        if (false === ($containingUnpackItem = $node->getAttribute(NodeConnector::ATTR_PARENT)) instanceof UnpackArrayItem) {
-            // @todo do no closure stuff here as we're not in a sub array so we have some kind of a reference which we can use in array_splice
-            echo 'leaving NOT a sub array! => ',PHP_EOL;
+        // @todo better blacklist than whitelist!!!
+        if (($containingNode = $node->getAttribute(NodeConnector::ATTR_PARENT)) instanceof Node\Expr\Assign) {
+            if (0 === count($this->currentArray->unpacks)) {
+                $this->leaveCurrentArray();
+                return null;
+            }
 
-            //$this->dumpedArraySplices = [];
-            $this->dumpedArray = $containingUnpackItem->getAttribute(NodeConnector::ATTR_PARENT);
-            //echo $dumper->dump($this->dumpedArray);
-//die('yes');
             foreach ($this->currentArray->unpacks as $id => $unpack) {
-                echo 'unpack: ',$id,' which is a ',get_class($unpack->value),PHP_EOL;
-                $this->dumpedArraySplices[] = $slicedNode = new Node\Expr\FuncCall(
+                $var = new Node\Expr\Variable($node->getAttribute(NodeConnector::ATTR_PREV)->name);
+
+                $this->dumpedArraySplices[] = new Node\Expr\FuncCall(
                     new Node\Name('array_splice'),
                     [
-                        new Node\Expr\Variable('LOL'),
+                        $var,
                         new Node\Expr\FuncCall(
                             new Node\Name('array_search'),
                             [
                                 new Node\Scalar\String_($id),
-                                new Node\Expr\Variable('LOL'),
+                                $var,
                             ]
                         ),
                         new Node\Scalar\LNumber(1),
                         $unpack->value
                     ]
                 );
-                echo $dumper->dump($slicedNode),PHP_EOL,PHP_EOL;
             }
 
             $this->leaveCurrentArray();
 
+            $this->dumpedArray = $containingNode;
+
             return null;
         }
 
-        /*if ($node === $this->dumpedArray) {
-            die('heree');
-            $this->dumpedArray = null;
-            $this->dumpedArraySplices = [];
-
-            return [];
-        }*/
-
+        // Closure transformation for "inline" arrays
 		$tmpArray = new Node\Expr\Variable('array');
 
 		$splices = [
