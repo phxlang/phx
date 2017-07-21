@@ -27,10 +27,18 @@ class PhxAutoloader extends ClassLoader
      */
     private $loader;
 
+    /**
+     * @var \ReflectionMethod
+     */
+    private $findFileWithExtensionMethod;
+
     public function __construct(ClassLoader $loader)
     {
         $this->transpiler = $this->getTranspiler();
         $this->loader = $loader;
+
+        $this->findFileWithExtensionMethod = new \ReflectionMethod(PhxAutoloader::class, 'findFileWithExtension');
+        $this->findFileWithExtensionMethod->setAccessible(true);
     }
 
     public function loadClass($class)
@@ -39,10 +47,7 @@ class PhxAutoloader extends ClassLoader
             return true;
         }
 
-        $method = new \ReflectionMethod(PhxAutoloader::class, 'findFileWithExtension');
-        $method->setAccessible(true);
-
-        if (false !== $filePath = $method->invoke($this->loader, $class, '.phx')) {
+        if (false !== $filePath = $this->findFileWithExtensionMethod->invoke($this->loader, $class, '.phx')) {
             includeCode($this->transpiler->fromFile($filePath));
             return true;
         }

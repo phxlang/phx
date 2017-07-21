@@ -48,6 +48,8 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
 	{
         if ($node instanceof Node\Expr\Array_) {
 	        $this->arrayStack[] = $this->currentArray = (object) ['node' => $node, 'unpacks' => []];
+        } elseif ($this->currentArray !== false && $node instanceof Node\Expr\Variable) {
+            $this->uses[$node->name] = $node;
         }
 
 		return null;
@@ -106,7 +108,7 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
                 true === $unpack->value instanceof  Node\Expr\MethodCall
                 && true === $unpack->value->var instanceof Node\Expr\Variable
             ) {
-                $this->uses[$unpack->value->name] = $unpack->value->var;
+                $this->uses[$unpack->value->var->name] = $unpack->value->var;
             }
 
             $splices[] = new Node\Expr\FuncCall(
@@ -136,6 +138,10 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
         }
 
 		$splices[] = new Node\Stmt\Return_($arrayVar);
+
+        if (isset($this->uses['this'])) {
+            unset($this->uses['this']);
+        }
 
 		$node = new Node\Expr\FuncCall(
 			new Node\Expr\Closure(
