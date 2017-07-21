@@ -3,6 +3,7 @@
 namespace Phx\Extension\Spread;
 
 use PhpParser\NodeVisitor;
+use Phx\Common\NodeConnector;
 use Phx\Extension\Spread\Visitor\ArraySpreadVisitor;
 use Phx\Extension\VisitorExtension;
 use Phx\Extension\YaccExtension;
@@ -32,6 +33,7 @@ class SpreadExtension implements YaccExtension, VisitorExtension
 	public function getVisitors(): array
 	{
 		return [
+		    new NodeConnector(),
 			new ArraySpreadVisitor()
 		];
 	}

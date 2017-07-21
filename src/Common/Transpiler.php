@@ -2,6 +2,7 @@
 
 namespace Phx\Common;
 
+use PhpParser\NodeDumper;
 use PhpParser\NodeTraverserInterface;
 use PhpParser\Parser;
 use PhpParser\PrettyPrinterAbstract;
@@ -51,9 +52,12 @@ class Transpiler
 
 	public function fromString(string $code): string
 	{
-		$stmts = $this->traverser->traverse(
-			$this->parser->parse($code)
-		);
+        $stmts = $this->parser->parse($code);
+
+        $dumper = new NodeDumper();
+        file_put_contents('dump.ast',$dumper->dump($stmts));
+
+		$stmts = $this->traverser->traverse($stmts);
 
 		return $this->printer->prettyPrint($stmts);
 	}

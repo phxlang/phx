@@ -1,0 +1,333 @@
+array(
+    0: Stmt_If(
+        cond: Expr_BinaryOp_Greater(
+            left: Expr_Variable(
+                name: argc
+            )
+            right: Scalar_LNumber(
+                value: 1
+            )
+        )
+        stmts: array(
+            0: Expr_FuncCall(
+                name: Name(
+                    parts: array(
+                        0: var_dump
+                    )
+                )
+                args: array(
+                    0: Arg(
+                        value: Expr_Variable(
+                            name: argv
+                        )
+                        byRef: false
+                        unpack: false
+                    )
+                )
+            )
+        )
+        elseifs: array(
+        )
+        else: null
+    )
+    1: Stmt_Function(
+        byRef: false
+        name: getIds
+        params: array(
+        )
+        returnType: null
+        stmts: array(
+            0: Stmt_Return(
+                expr: Expr_Array(
+                    items: array(
+                        0: Expr_ArrayItem(
+                            key: null
+                            value: Scalar_LNumber(
+                                value: 3
+                            )
+                            byRef: false
+                        )
+                        1: Expr_ArrayItem(
+                            key: null
+                            value: Scalar_LNumber(
+                                value: 4
+                            )
+                            byRef: false
+                        )
+                        2: Expr_ArrayItem(
+                            key: null
+                            value: Scalar_LNumber(
+                                value: 5
+                            )
+                            byRef: false
+                        )
+                    )
+                )
+            )
+        )
+    )
+    2: Stmt_Class(
+        flags: 0
+        name: Provider
+        extends: null
+        implements: array(
+        )
+        stmts: array(
+            0: Stmt_ClassMethod(
+                flags: MODIFIER_PUBLIC (1)
+                byRef: false
+                name: getNames
+                params: array(
+                )
+                returnType: array
+                stmts: array(
+                    0: Stmt_Return(
+                        expr: Expr_Array(
+                            items: array(
+                                0: Expr_ArrayItem(
+                                    key: null
+                                    value: Scalar_String(
+                                        value: Pascal
+                                    )
+                                    byRef: false
+                                )
+                                1: Expr_ArrayItem(
+                                    key: null
+                                    value: Scalar_String(
+                                        value: Philipp
+                                    )
+                                    byRef: false
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+            1: Stmt_ClassMethod(
+                flags: MODIFIER_PUBLIC | MODIFIER_STATIC (9)
+                byRef: false
+                name: getOtherNames
+                params: array(
+                )
+                returnType: array
+                stmts: array(
+                    0: Stmt_Return(
+                        expr: Expr_Array(
+                            items: array(
+                                0: Expr_ArrayItem(
+                                    key: null
+                                    value: Scalar_String(
+                                        value: Cassandra
+                                    )
+                                    byRef: false
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    3: Expr_Assign(
+        var: Expr_Variable(
+            name: crazy
+        )
+        expr: Expr_Array(
+            items: array(
+                0: Expr_ArrayItem(
+                    key: null
+                    value: Scalar_String(
+                        value: my
+                    )
+                    byRef: false
+                )
+            )
+        )
+    )
+    4: Expr_Assign(
+        var: Expr_Variable(
+            name: otherItems
+        )
+        expr: Expr_Array(
+            items: array(
+                0: Expr_ArrayItem(
+                    key: null
+                    value: Scalar_String(
+                        value: hello
+                    )
+                    byRef: false
+                )
+                1: _Expr_UnpackArrayItem(
+                    key: null
+                    value: Expr_Variable(
+                        name: crazy
+                    )
+                    byRef: false
+                )
+                2: Expr_ArrayItem(
+                    key: null
+                    value: Scalar_String(
+                        value: world
+                    )
+                    byRef: false
+                )
+            )
+        )
+    )
+    5: Expr_Assign(
+        var: Expr_Variable(
+            name: otherItems2
+        )
+        expr: Expr_Array(
+            items: array(
+                0: Expr_ArrayItem(
+                    key: null
+                    value: Scalar_String(
+                        value: baz
+                    )
+                    byRef: false
+                )
+            )
+        )
+    )
+    6: Expr_Assign(
+        var: Expr_Variable(
+            name: provider
+        )
+        expr: Expr_New(
+            class: Name(
+                parts: array(
+                    0: Provider
+                )
+            )
+            args: array(
+            )
+        )
+    )
+    7: Expr_Assign(
+        var: Expr_Variable(
+            name: items
+        )
+        expr: Expr_Array(
+            items: array(
+                0: Expr_ArrayItem(
+                    key: null
+                    value: Scalar_String(
+                        value: foo
+                    )
+                    byRef: false
+                )
+                1: _Expr_UnpackArrayItem(
+                    key: null
+                    value: Expr_Variable(
+                        name: otherItems
+                    )
+                    byRef: false
+                )
+                2: _Expr_UnpackArrayItem(
+                    key: null
+                    value: Expr_Array(
+                        items: array(
+                            0: _Expr_UnpackArrayItem(
+                                key: null
+                                value: Expr_Variable(
+                                    name: crazy
+                                )
+                                byRef: false
+                            )
+                            1: Expr_ArrayItem(
+                                key: null
+                                value: Scalar_String(
+                                    value: meow
+                                )
+                                byRef: false
+                            )
+                            2: _Expr_UnpackArrayItem(
+                                key: null
+                                value: Expr_FuncCall(
+                                    name: Name(
+                                        parts: array(
+                                            0: getIds
+                                        )
+                                    )
+                                    args: array(
+                                    )
+                                )
+                                byRef: false
+                            )
+                            3: _Expr_UnpackArrayItem(
+                                key: null
+                                value: Expr_MethodCall(
+                                    var: Expr_Variable(
+                                        name: provider
+                                    )
+                                    name: getNames
+                                    args: array(
+                                    )
+                                )
+                                byRef: false
+                            )
+                        )
+                    )
+                    byRef: false
+                )
+                3: Expr_ArrayItem(
+                    key: null
+                    value: Scalar_String(
+                        value: bar
+                    )
+                    byRef: false
+                )
+                4: _Expr_UnpackArrayItem(
+                    key: null
+                    value: Expr_Variable(
+                        name: otherItems2
+                    )
+                    byRef: false
+                )
+                5: _Expr_UnpackArrayItem(
+                    key: null
+                    value: Expr_StaticCall(
+                        class: Name(
+                            parts: array(
+                                0: Provider
+                            )
+                        )
+                        name: getOtherNames
+                        args: array(
+                        )
+                    )
+                    byRef: false
+                )
+            )
+        )
+    )
+    8: Stmt_Foreach(
+        expr: Expr_Variable(
+            name: items
+        )
+        keyVar: null
+        byRef: false
+        valueVar: Expr_Variable(
+            name: item
+        )
+        stmts: array(
+            0: Stmt_Echo(
+                exprs: array(
+                    0: Expr_Variable(
+                        name: item
+                    )
+                    1: Expr_ConstFetch(
+                        name: Name(
+                            parts: array(
+                                0: PHP_EOL
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    9: Stmt_Nop(
+    )
+)
