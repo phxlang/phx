@@ -13,6 +13,9 @@
     "autoload": {
         "psr-4": {
             "Phx\\": "src/"
-        }
+        },
+        "files": [
+            "src/autoloader.php"
+        ]
     }
 }
