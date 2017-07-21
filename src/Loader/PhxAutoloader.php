@@ -3,8 +3,11 @@
 namespace Phx\Loader;
 
 use Composer\Autoload\ClassLoader;
+use PhpParser\PrettyPrinter\Standard;
 use Phx\Common\Transpiler;
 use Phx\Common\TranspilerBuilder;
+use Phx\Extension\ForIn\ForInExtension;
+use Phx\Extension\Spread\SpreadExtension;
 use Phx\Lexer\PhxLexer;
 use Phx\Parser\Phx;
 
@@ -28,36 +31,31 @@ class PhxAutoloader extends ClassLoader
     {
         $this->transpiler = $this->getTranspiler();
         $this->loader = $loader;
-        $this->add(null, $loader->getFallbackDirs());
-        $this->addPsr4(null, $loader->getFallbackDirsPsr4());
-        foreach ($loader->getPrefixes() as $prefix => $path) {
-            $this->add($prefix, $path);
-        }
-        foreach ($loader->getPrefixesPsr4() as $prefix => $path) {
-            $this->addPsr4($prefix, $path);
-        }
-        $this->setUseIncludePath($loader->getUseIncludePath());
     }
 
     public function loadClass($class)
     {
+        if (true === $this->loader->loadClass($class)) {
+            return true;
+        }
+
         $method = new \ReflectionMethod(PhxAutoloader::class, 'findFileWithExtension');
         $method->setAccessible(true);
-        $result = $method->invoke($this, $class, '.phx'); exit;
 
-        //var_dump($result); exit;
-
-        if ($file = $this->findFile($class)) {
-            includeCode($file);
-            die('iiiii');
-
+        if (false !== $filePath = $method->invoke($this->loader, $class, '.phx')) {
+            includeCode($this->transpiler->fromFile($filePath));
             return true;
         }
     }
 
-    private function getTranspiler()
+    private function getTranspiler(): Transpiler
     {
-        return null;
+        return TranspilerBuilder::create()
+            ->setParser(new Phx(new PhxLexer()))
+            ->setPrinter(new Standard())
+            ->registerExtension(new SpreadExtension())
+            ->registerExtension(new ForInExtension())
+            ->build();
     }
 }
 
