@@ -55,6 +55,11 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
 
 		$tmpArray = new Node\Expr\Variable('array');
 
+		if ([] === $this->currentArray->unpacks) {
+            $this->leaveCurrentArray();
+		    return null;
+        }
+
 		foreach ($this->currentArray->unpacks as $id => $unpack) {
 			if ($unpack->value instanceof Node\Expr\Variable) {
 				$this->uses[$unpack->value->name] = $unpack->value;
@@ -88,12 +93,20 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
 			)
 		);
 
-		array_pop($this->arrayStack);
-
-		if (false === $this->currentArray = end($this->arrayStack)) {
-			$this->uses = [];
-		}
+		$this->leaveCurrentArray();
 
 		return $node;
 	}
+
+    /**
+     * @return void
+     */
+	private function leaveCurrentArray()
+    {
+        array_pop($this->arrayStack);
+
+        if (false === $this->currentArray = end($this->arrayStack)) {
+            $this->uses = [];
+        }
+    }
 }
