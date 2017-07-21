@@ -61,9 +61,14 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
         }
 
 		foreach ($this->currentArray->unpacks as $id => $unpack) {
-			if ($unpack->value instanceof Node\Expr\Variable) {
+			if (true === $unpack->value instanceof Node\Expr\Variable) {
 				$this->uses[$unpack->value->name] = $unpack->value;
-			}
+			} elseif (
+			    true === $unpack->value instanceof  Node\Expr\MethodCall
+                && true === $unpack->value->var instanceof Node\Expr\Variable
+            ) {
+                $this->uses[$unpack->value->name] = $unpack->value->var;
+            }
 
 			$splices[] = new Node\Expr\FuncCall(
 				new Node\Name('array_splice'),
