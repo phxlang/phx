@@ -12,4 +12,14 @@ composer require phx/phx
 
 ## Usage
 
-Every file wich ends in `.phx` will be executed by PHX automatically.
+### CLI
+
+There's a `phx` binary which takes a file path as the first argument which will be the PHX script to be executed:
+
+```bash
+$ vendor/bin/phx your_script.phx
+```
+
+### As a composer dependency
+
+If you use PHX as a `composer` dependency, every file which ends in `.phx` will be executed by PHX automatically.
