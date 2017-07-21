@@ -910,7 +910,7 @@ array_pair:
     | expr                                                  { $$ = Expr\ArrayItem[$1, null, false]; }
     | expr T_DOUBLE_ARROW '&' variable                      { $$ = Expr\ArrayItem[$4, $1,   true]; }
     | '&' variable                                          { $$ = Expr\ArrayItem[$2, null, true]; }
-    | T_ELLIPSIS expr                                       { $$ = PhxParser\Node\Expr\UnpackArrayItem[$2, null, false]; }
+    | T_ELLIPSIS expr                                       { $$ = \Phx\Parser\Node\Expr\UnpackArrayItem[$2, null, false]; }
     | /* empty */                                           { $$ = null; }
 ;
 

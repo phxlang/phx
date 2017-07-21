@@ -8,7 +8,6 @@ use PhpParser\Node\Expr;
 use PhpParser\Node\Name;
 use PhpParser\Node\Scalar;
 use PhpParser\Node\Stmt;
-use Phx\Parser as PhxParser;
 
 /* This is an automatically GENERATED file, which should not be manually edited.
  * Instead edit one of the following:
@@ -2793,7 +2792,7 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule489() {
-         $this->semValue = new PhxParser\Node\Expr\UnpackArrayItem($this->semStack[$this->stackPos-(2-2)], null, false, $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
+         $this->semValue = new \Phx\Parser\Node\Expr\UnpackArrayItem($this->semStack[$this->stackPos-(2-2)], null, false, $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
     }
 
     protected function reduceRule490() {

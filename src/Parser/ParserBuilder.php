@@ -2,6 +2,10 @@
 
 namespace Phx\Parser;
 
+use Phx\Extension\Extension;
+use Phx\Extension\TokenExtension;
+use Phx\Parser\Node\Expr\UnpackArrayItem;
+
 class ParserBuilder
 {
 
@@ -16,6 +20,13 @@ class ParserBuilder
 	const PARAMS = '\[(?<params>[^[\]]*+(?:\[(?&params)\][^[\]]*+)*+)\]';
 	const ARGS   = '\((?<args>[^()]*+(?:\((?&args)\)[^()]*+)*+)\)';
 
+	private $extensions = [];
+
+	public function addExtension(Extension $extension)
+    {
+        $this->extensions[] = $extension;
+    }
+
 	public function build(array $options = [])
 	{
 		$grammarDir = __DIR__ . '/../../grammar';
@@ -27,7 +38,7 @@ class ParserBuilder
 		];
 
 		$tokensFile     = $grammarDir . '/tokens.y';
-		$skeletonFile   = $grammarDir . '/parser.template';
+		$skeletonFile   = $phpParserVendorDir . '/grammar/parser.template';
 		$tokensTemplate = $phpParserVendorDir . '/grammar/tokens.template';
 		$tmpIdentifier  = uniqid();
 		$tmpGrammarFile = sys_get_temp_dir().'/'.$tmpIdentifier.'_tmp_parser.phpy';
@@ -49,6 +60,15 @@ class ParserBuilder
 		///////////////////
 
 		$tokens = file_get_contents($tokensFile);
+
+		/*foreach ($this->extensions as $extension)
+        {
+            if (false === $extension instanceof TokenExtension) {
+                continue;
+            }
+
+            $tokens .= implode(PHP_EOL, $extension->getTokens()) . PHP_EOL;
+        }*/
 
 		foreach ($grammarFileToName as $grammarFile => $name) {
 			echo "Building temporary $name grammar file.\n";
@@ -95,7 +115,7 @@ class ParserBuilder
 
 	protected function resolveNodes($code) {
 		return preg_replace_callback(
-			'~\b(?<name>[A-Z][a-zA-Z_\\\\]++)\s*' . self::PARAMS . '~',
+			'~(?<![\w])(?<name>\\\\?[A-Z][a-zA-Z_\\\\]++)\s*' . self::PARAMS . '~',
 			function($matches) {
 				// recurse
 				$matches['params'] = $this->resolveNodes($matches['params']);
@@ -109,7 +129,6 @@ class ParserBuilder
 				foreach ($params as $param) {
 					$paramCode .= $param . ', ';
 				}
-
 				return 'new ' . $matches['name'] . '(' . $paramCode . 'attributes())';
 			},
 			$code
