@@ -3,7 +3,6 @@
 namespace Phx\Extension\Spread\Visitor;
 
 use PhpParser\Node;
-use PhpParser\NodeDumper;
 use PhpParser\NodeVisitorAbstract;
 use Phx\Common\NodeConnector;
 use Phx\Parser\Node\Expr\UnpackArrayItem;
@@ -16,19 +15,35 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
 
 	const PREFIX = '__phx_spread_';
 
-	/** @var \stdClass[] */
+	/**
+     * @var \stdClass[]
+     */
 	private $arrayStack = [];
 
-	/** @var null|\stdClass */
+	/**
+     * @var false|\stdClass
+     */
 	private $currentArray = false;
 
-	/** @var array */
+	/**
+     * @var Node\Expr\Variable[]
+     */
 	private $uses = [];
 
-	private $dumpedArraySplices = [];
+    /**
+     * @var array
+     */
+	private $pendingSplices = [];
 
-	private $dumpedArray = null;
+    /**
+     * @var null|Node\Expr\Array_
+     */
+	private $pendingArray = null;
 
+    /**
+     * @param Node $node
+     * @return null
+     */
 	public function enterNode(Node $node)
 	{
         if ($node instanceof Node\Expr\Array_) {
@@ -38,6 +53,10 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
 		return null;
 	}
 
+    /**
+     * @param Node $node
+     * @return array|null|Node
+     */
 	public function leaveNode(Node $node)
 	{
 		if ($node instanceof UnpackArrayItem) {
@@ -46,11 +65,11 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
 			return new Node\Expr\ArrayItem(new Node\Scalar\String_($id));
 		}
 
-        if ($node === $this->dumpedArray) {
-            $replaces = array_merge([$this->dumpedArray], $this->dumpedArraySplices);
+        if ($node === $this->pendingArray) {
+            $replaces = $this->pendingSplices;
 
-            $this->dumpedArray = null;
-            $this->dumpedArraySplices = [];
+            $this->pendingArray = null;
+            $this->pendingSplices = [];
 
             return $replaces;
         }
@@ -61,83 +80,62 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
 
         /** @var Node\Expr\Array_ $node */
 
-        // @todo better blacklist than whitelist!!!
-        if (($containingNode = $node->getAttribute(NodeConnector::ATTR_PARENT)) instanceof Node\Expr\Assign) {
-            if (0 === count($this->currentArray->unpacks)) {
-                $this->leaveCurrentArray();
-                return null;
-            }
-
-            foreach ($this->currentArray->unpacks as $id => $unpack) {
-                $var = new Node\Expr\Variable($node->getAttribute(NodeConnector::ATTR_PREV)->name);
-
-                $this->dumpedArraySplices[] = new Node\Expr\FuncCall(
-                    new Node\Name('array_splice'),
-                    [
-                        $var,
-                        new Node\Expr\FuncCall(
-                            new Node\Name('array_search'),
-                            [
-                                new Node\Scalar\String_($id),
-                                $var,
-                            ]
-                        ),
-                        new Node\Scalar\LNumber(1),
-                        $unpack->value
-                    ]
-                );
-            }
-
+        if ([] === $this->currentArray->unpacks) {
             $this->leaveCurrentArray();
-
-            $this->dumpedArray = $containingNode;
-
             return null;
         }
 
-        // Closure transformation for "inline" arrays
-		$tmpArray = new Node\Expr\Variable('array');
+        $parentNode = $node->getAttribute(NodeConnector::ATTR_PARENT);
 
-		$splices = [
-			new Node\Expr\Assign(
-                $tmpArray,
-				$node
-			),
-		];
-
-		if ([] === $this->currentArray->unpacks) {
-            $this->leaveCurrentArray();
-		    return null;
+        if (true === $parentNode instanceof Node\Expr\Assign) {
+            $arrayVar = new Node\Expr\Variable($node->getAttribute(NodeConnector::ATTR_PREV)->name);
+        } else {
+            // We need do create a dummy variable for the closure transformation used in case of "inline" arrays
+            $arrayVar = new Node\Expr\Variable('array');
         }
 
-		foreach ($this->currentArray->unpacks as $id => $unpack) {
-			if (true === $unpack->value instanceof Node\Expr\Variable) {
-				$this->uses[$unpack->value->name] = $unpack->value;
-			} elseif (
-			    true === $unpack->value instanceof  Node\Expr\MethodCall
+        $splices = [
+            new Node\Expr\Assign($arrayVar, $node)
+        ];
+
+        foreach ($this->currentArray->unpacks as $id => $unpack) {
+            // Store uses in case we need to inject them into a closure
+            if (true === $unpack->value instanceof Node\Expr\Variable) {
+                $this->uses[$unpack->value->name] = $unpack->value;
+            } elseif (
+                true === $unpack->value instanceof  Node\Expr\MethodCall
                 && true === $unpack->value->var instanceof Node\Expr\Variable
             ) {
                 $this->uses[$unpack->value->name] = $unpack->value->var;
             }
 
-			$splices[] = new Node\Expr\FuncCall(
-				new Node\Name('array_splice'),
-				[
-					$tmpArray,
-					new Node\Expr\FuncCall(
-						new Node\Name('array_search'),
-						[
-							new Node\Scalar\String_($id),
-							$tmpArray,
-						]
-					),
-					new Node\Scalar\LNumber(1),
-					$unpack->value
-				]
-			);
-		}
+            $splices[] = new Node\Expr\FuncCall(
+                new Node\Name('array_splice'),
+                [
+                    $arrayVar,
+                    new Node\Expr\FuncCall(
+                        new Node\Name('array_search'),
+                        [
+                            new Node\Scalar\String_($id),
+                            $arrayVar,
+                        ]
+                    ),
+                    new Node\Scalar\LNumber(1),
+                    $unpack->value
+                ]
+            );
+        }
 
-		$splices[] = new Node\Stmt\Return_($tmpArray);
+        if (true === $parentNode instanceof Node\Expr\Assign) {
+            $this->pendingSplices = $splices;
+            $this->pendingArray = $parentNode;
+
+            $this->leaveCurrentArray();
+
+            return null;
+        }
+
+		$splices[] = new Node\Stmt\Return_($arrayVar);
 
 		$node = new Node\Expr\FuncCall(
 			new Node\Expr\Closure(
