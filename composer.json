@@ -1,6 +1,11 @@
 {
+    "name": "phx/phx",
+    "license": "MIT",
     "require": {
         "nikic/php-parser": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.2"
     },
     "bin": [
         "bin/build"
