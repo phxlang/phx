@@ -3,13 +3,8 @@
 namespace Phx\Loader;
 
 use Composer\Autoload\ClassLoader;
-use PhpParser\PrettyPrinter\Standard;
+use Phx\Common\PhxTranspilerBuilder;
 use Phx\Common\Transpiler;
-use Phx\Common\TranspilerBuilder;
-use Phx\Extension\ForIn\ForInExtension;
-use Phx\Extension\Spread\SpreadExtension;
-use Phx\Lexer\PhxLexer;
-use Phx\Parser\Phx;
 
 /**
  * @author Pascal Muenst <pascal@timesplinter.ch>
@@ -34,7 +29,7 @@ class PhxAutoloader extends ClassLoader
 
     public function __construct(ClassLoader $loader)
     {
-        $this->transpiler = $this->getTranspiler();
+        $this->transpiler = PhxTranspilerBuilder::create()->build();
         $this->loader = $loader;
 
         $this->findFileWithExtensionMethod = new \ReflectionMethod(PhxAutoloader::class, 'findFileWithExtension');
@@ -51,16 +46,6 @@ class PhxAutoloader extends ClassLoader
             includeCode($this->transpiler->fromFile($filePath));
             return true;
         }
-    }
-
-    private function getTranspiler(): Transpiler
-    {
-        return TranspilerBuilder::create()
-            ->setParser(new Phx(new PhxLexer()))
-            ->setPrinter(new Standard())
-            ->registerExtension(new SpreadExtension())
-            ->registerExtension(new ForInExtension())
-            ->build();
     }
 }
 

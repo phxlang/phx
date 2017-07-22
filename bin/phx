@@ -40,38 +40,24 @@ if ($argc === 0) {
         printHelp();
     }
 
-    $transpiler = getTranspiler();
+    $transpiler = \Phx\Common\PhxTranspilerBuilder::create()->build();
     eval($transpiler->fromString('<?php ' . $argv[1]));
     exit(0);
 } else {
 	$scriptPath = realpath($argv[0]);
-
-	$extensions = [
-
-    ];
 
 	if(false === file_exists($scriptPath)) {
 		echo sprintf('Could not open input file: %s' , PHP_EOL, $argv[0]);
         exit(1);
 	}
 
-	$transpiler = getTranspiler();
+	$transpiler = \Phx\Common\PhxTranspilerBuilder::create()->build();
 
     $code = $transpiler->fromFile($scriptPath);
 
 	file_put_contents(getcwd().'/dump.php', '<?php'.PHP_EOL.$code);
 	eval($code);
 	exit(0);
-}
-
-function getTranspiler(): \Phx\Common\Transpiler
-{
-    return \Phx\Common\TranspilerBuilder::create()
-        ->setParser(new \Phx\Parser\Phx(new \Phx\Lexer\PhxLexer()))
-        ->setPrinter(new \PhpParser\PrettyPrinter\Standard())
-        ->registerExtension(new \Phx\Extension\Spread\SpreadExtension())
-        ->registerExtension(new \Phx\Extension\ForIn\ForInExtension())
-        ->build();
 }
 
 function printHelp(): string

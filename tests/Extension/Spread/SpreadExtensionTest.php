@@ -6,6 +6,9 @@ use Phx\Tests\PhxTestCase;
 
 /**
  * @author Pascal Muenst <pascal@timesplinter.ch>
+ * @group integration
+ * @covers \Phx\Extension\Spread\Visitor\ArraySpreadVisitor
+ * @covers \Phx\Extension\Spread\Helper\ArraySpreadHelper
  */
 class SpreadExtensionTest extends PhxTestCase
 {
