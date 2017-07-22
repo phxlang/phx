@@ -16,7 +16,9 @@ class ForInExtension implements TokenExtension, YaccExtension
      */
     public function extendTokens(): array
     {
-        return ['%token T_IN'];
+        return [
+            'in' => [TokenExtension::TYPE_TOKEN, 'T_IN']
+        ];
     }
 
     /**

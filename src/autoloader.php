@@ -4,19 +4,19 @@
  * @author Pascal Muenst <pascal@timesplinter.ch>
  */
 $dir = dirname(__DIR__);
-while ($dir !== DIRECTORY_SEPARATOR && !file_exists($dir . "/vendor/autoload.php")) {
+while ($dir !== DIRECTORY_SEPARATOR && !file_exists($dir . '/vendor/autoload.php')) {
     $dir = dirname($dir);
 }
 if ($dir === DIRECTORY_SEPARATOR) {
-    throw new \RuntimeException("Cannot find autoloader, did you install with composer?");
+    throw new \RuntimeException('Cannot find autoloader, did you install with composer?');
 }
-$autoloader = require $dir . "/vendor/autoload.php";
+$autoloader = require $dir . '/vendor/autoload.php';
 $new_autoloader = new \Phx\Loader\PhxAutoloader($autoloader);
 $autoloader->unregister();
 $new_autoloader->register(true);
 foreach (get_declared_classes() as $class) {
-    if (strpos($class, "ComposerAutoloaderInit") === 0) {
-        $r = new ReflectionProperty($class, "loader");
+    if (strpos($class, 'ComposerAutoloaderInit') === 0) {
+        $r = new ReflectionProperty($class, 'loader');
         $r->setAccessible(true);
         $r->setValue($new_autoloader);
     }

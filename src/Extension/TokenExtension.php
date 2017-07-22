@@ -7,6 +7,15 @@ namespace Phx\Extension;
  */
 interface TokenExtension extends Extension
 {
+
+    const TYPE_TOKEN = 'token';
+
+    const TYPE_LEFT = 'left';
+
+    const TYPE_RIGHT = 'right';
+
+    const TYPE_NONASSOC = 'nonassoc';
+
 	/**
 	 * @return array
 	 */

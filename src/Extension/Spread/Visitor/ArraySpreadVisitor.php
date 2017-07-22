@@ -5,6 +5,7 @@ namespace Phx\Extension\Spread\Visitor;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
 use Phx\Common\NodeConnector;
+use Phx\Extension\Spread\Helper\ArraySpreadHelper;
 use Phx\Parser\Node\Expr\UnpackArrayItem;
 
 /**
@@ -112,17 +113,10 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
             }
 
             $splices[] = new Node\Expr\FuncCall(
-                new Node\Name('array_splice'),
+                new Node\Name(ArraySpreadHelper::class.'::spreadArray'),
                 [
                     $arrayVar,
-                    new Node\Expr\FuncCall(
-                        new Node\Name('array_search'),
-                        [
-                            new Node\Scalar\String_($id),
-                            $arrayVar,
-                        ]
-                    ),
-                    new Node\Scalar\LNumber(1),
+                    new Node\Scalar\String_($id),
                     $unpack->value
                 ]
             );

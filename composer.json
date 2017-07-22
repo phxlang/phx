@@ -14,9 +14,11 @@
     "autoload": {
         "psr-4": {
             "Phx\\": "src/"
-        },
-        "files": [
-            "src/autoloader.php"
-        ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phx\\Tests\\": "tests/"
+        }
     }
 }
