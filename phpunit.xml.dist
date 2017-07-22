@@ -14,4 +14,9 @@
     <testsuite name="Extensions">
         <directory>tests/Extension/</directory>
     </testsuite>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory>src</directory>
+        </whitelist>
+    </filter>
 </phpunit>

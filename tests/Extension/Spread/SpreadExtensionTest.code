@@ -122,3 +122,22 @@ Array
 
 )
 >>>>>>>
+
+testDoesNotInjectThisIntoClosure
+<<<<<<<
+class Provider2
+{
+	private $someOtherNames = ['John'];
+
+    public function getNames(): array { return ['Pascal', ...$this->someOtherNames, 'Philipp']; }
+}
+
+print_r((new Provider2)->getNames());
+=======
+Array
+(
+    [0] => Pascal
+    [1] => John
+    [2] => Philipp
+)
+>>>>>>>

@@ -54,4 +54,12 @@ class SpreadExtensionTest extends PhxTestCase
         ));
         self::assertCode($code);
     }
+
+    public function testDoesNotInjectThisIntoClosure()
+    {
+        self::assertNotNull($code = self::getCode(
+            'testDoesNotInjectThisIntoClosure'
+        ));
+        self::assertCode($code);
+    }
 }
