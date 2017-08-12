@@ -113,7 +113,7 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
             }
 
             $splices[] = new Node\Expr\FuncCall(
-                new Node\Name(ArraySpreadHelper::class.'::spreadArray'),
+                new Node\Name('\\' . ArraySpreadHelper::class.'::spreadArray'),
                 [
                     $arrayVar,
                     new Node\Scalar\String_($id),
