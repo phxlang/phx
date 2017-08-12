@@ -1,10 +1,10 @@
 # PHX
 
-PHX (**PH**P Ne**X**t) is a language extension of PHP. While PHP is fully supported by PHX it adds some additional syntax to the existing syntax set of PHP which increases productivity and readability of your code.
+PHX (**PH**P Ne**X**t) is a language extension of PHP. While PHP is fully supported by PHX it adds some additional syntax to the existing syntax set of PHP which increases productivity and readability of common PHP code.
 
 ## Installation
 
-Install PHX simply by adding the dependecy to your `composer.json`.
+Install PHX simply by adding the dependency to the project's `composer.json`.
 
 ```
 composer require phx/phx
@@ -12,7 +12,7 @@ composer require phx/phx
 
 ## Usage
 
-### CLI
+### Standalone
 
 There's a `phx` binary which takes a file path as the first argument which will be the PHX script to be executed:
 
@@ -20,6 +20,7 @@ There's a `phx` binary which takes a file path as the first argument which will 
 $ vendor/bin/phx your_script.phx
 ```
 
-### As a composer dependency
+### With Composer
 
-If you use PHX as a `composer` dependency, every file which ends in `.phx` will be executed by PHX automatically.
+If you want to use PHX with `composer` autoloading please install the `phx/composer-phx-plugin`.
+It will add PHX autoloading support to composer.
