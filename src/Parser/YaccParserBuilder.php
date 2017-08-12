@@ -6,7 +6,7 @@ use Phx\Extension\Extension;
 use Phx\Extension\TokenExtension;
 use Phx\Parser\Node\Expr\UnpackArrayItem;
 
-class ParserBuilder
+class YaccParserBuilder
 {
 
 	const LIB = '(?(DEFINE)
@@ -34,16 +34,16 @@ class ParserBuilder
 		$resultDir = __DIR__;
 
 		$grammarFileToName = [
-			$grammarDir . '/phx.y' => 'Phx',
+			$grammarDir . '/yacc.y' => 'Yacc',
 		];
 
-		$tokensFile     = $grammarDir . '/tokens.y';
+		$tokensFile     = $grammarDir . '/yacc_tokens.y';
 		$skeletonFile   = $phpParserVendorDir . '/grammar/parser.template';
 		$tokensTemplate = $phpParserVendorDir . '/grammar/tokens.template';
 		$tmpIdentifier  = uniqid();
 		$tmpGrammarFile = sys_get_temp_dir().'/'.$tmpIdentifier.'_tmp_parser.phpy';
 		$tmpResultFile  = sys_get_temp_dir().'/'.$tmpIdentifier.'_tmp_parser.php';
-		$tokensResultsFile = $resultDir . '/Tokens.php';
+		$tokensResultsFile = $resultDir . '/YaccTokens.php';
 
 		// check for kmyacc.exe binary in this directory, otherwise fall back to global name
 		$kmyacc = __DIR__ . '/kmyacc.exe';
@@ -61,15 +61,6 @@ class ParserBuilder
 
 		$tokens = file_get_contents($tokensFile);
 
-		/*foreach ($this->extensions as $extension)
-        {
-            if (false === $extension instanceof TokenExtension) {
-                continue;
-            }
-
-            $tokens .= implode(PHP_EOL, $extension->getTokens()) . PHP_EOL;
-        }*/
-
 		foreach ($grammarFileToName as $grammarFile => $name) {
 			echo "Building temporary $name grammar file.\n";
 
@@ -80,13 +71,14 @@ class ParserBuilder
 			$grammarCode = $this->resolveMacros($grammarCode);
 			$grammarCode = $this->resolveStackAccess($grammarCode);
 
-			//file_put_contents($tmpGrammarFile, $grammarCode);
+			file_put_contents($tmpGrammarFile, $grammarCode);
 
-			//file_put_contents('dump.y', $grammarCode);
+			file_put_contents('dump.y', $grammarCode);
 
 			$additionalArgs = $optionDebug ? '-t -v' : '';
 
 			echo "Building $name parser.\n";
+			//echo "$kmyacc $additionalArgs -l -m $skeletonFile -p $name $tmpGrammarFile 2>&1"; exit;
 			$output = trim(shell_exec("$kmyacc $additionalArgs -l -m $skeletonFile -p $name $tmpGrammarFile 2>&1"));
 			echo "Output: \"$output\"\n";
 
@@ -102,7 +94,7 @@ class ParserBuilder
 			$output = trim(shell_exec("$kmyacc -l -m $tokensTemplate $tmpGrammarFile 2>&1"));
 			assert($output === '');
 			$resultCode = file_get_contents($tmpResultFile);
-			$resultCode = strtr($resultCode, ['namespace PhpParser\Parser;' => 'namespace '.__NAMESPACE__.';']);
+			$resultCode = strtr($resultCode, ['namespace PhpParser\Parser;' => 'namespace '.__NAMESPACE__.';', 'class Tokens' => 'class YaccTokens']);
 			file_put_contents($tokensResultsFile, $resultCode);
 
 			if (!$optionKeepTmpGrammar) {

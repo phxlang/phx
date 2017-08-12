@@ -1,0 +1,17 @@
+%token T_DOUBLE_PERCENTAGE
+%token T_STRING
+%token T_NUM
+%token T_TOKEN
+%token T_LEFT
+%token T_RIGHT
+%token T_NONASSOC
+%token T_EXPECT
+%token T_PURE_PARSER
+%token T_CURLY_OPEN
+%token T_CURLY_CLOSE
+%token T_SEMICOLON
+%token T_COLON
+%token T_WHITESPACE
+%token T_COMMENT
+%token T_PIPE
+%token T_ENCAPSED_STRING
