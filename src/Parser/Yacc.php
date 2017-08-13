@@ -233,19 +233,19 @@ class Yacc extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule16() {
-         $this->semValue = new \Phx\Yacc\Parser\Token($this->semStack[$this->stackPos-(2-2)], $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
+         $this->semValue = new \Phx\Yacc\Parser\Token\Token($this->semStack[$this->stackPos-(2-2)], $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
     }
 
     protected function reduceRule17() {
-         $this->semValue = new \Phx\Yacc\Parser\Token($this->semStack[$this->stackPos-(2-2)], $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
+         $this->semValue = new \Phx\Yacc\Parser\Token\Left($this->semStack[$this->stackPos-(2-2)], $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
     }
 
     protected function reduceRule18() {
-         $this->semValue = new \Phx\Yacc\Parser\Token($this->semStack[$this->stackPos-(2-2)], $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
+         $this->semValue = new \Phx\Yacc\Parser\Token\Right($this->semStack[$this->stackPos-(2-2)], $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
     }
 
     protected function reduceRule19() {
-         $this->semValue = new \Phx\Yacc\Parser\Token($this->semStack[$this->stackPos-(2-2)], $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
+         $this->semValue = new \Phx\Yacc\Parser\Token\NonAssoc($this->semStack[$this->stackPos-(2-2)], $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
     }
 
     protected function reduceRule20() {

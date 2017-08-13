@@ -53,8 +53,8 @@ token:
      | T_LEFT tokens                                                { $$ = \Phx\Yacc\Parser\Token\Left[$2]; }
      | T_RIGHT tokens                                               { $$ = \Phx\Yacc\Parser\Token\Right[$2]; }
      | T_NONASSOC tokens                                            { $$ = \Phx\Yacc\Parser\Token\NonAssoc[$2]; }
-     | T_EXPECT T_NUM                                               { $$ = \Phx\Yacc\Parser\Token\Expect[$2]; }
-     | T_PURE_PARSER                                                { $$ = \Phx\Yacc\Parser\Token\PureParser[]; }
+     | T_EXPECT T_NUM                                               { $$ = \Phx\Yacc\Parser\Expect[$2]; }
+     | T_PURE_PARSER                                                { $$ = \Phx\Yacc\Parser\PureParser[]; }
 ;
 
 token_name:

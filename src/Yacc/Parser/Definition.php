@@ -1,8 +1,8 @@
 <?php
 
-
 namespace Phx\Yacc\Parser;
 
+use Phx\Yacc\Parser\Token\AbstractToken;
 
 /**
  * @author Pascal Muenst <pascal@timesplinter.ch>
@@ -10,13 +10,19 @@ namespace Phx\Yacc\Parser;
 class Definition extends AbstractNode
 {
 
+    /**
+     * @var AbstractToken[]
+     */
     public $tokens;
 
+    /**
+     * @var RuleGroup[]
+     */
     public $rules;
 
     public $programs;
 
-    public function __construct($tokens, $rules, $programs, $attributes)
+    public function __construct(array $tokens, array $rules, array $programs, array $attributes)
     {
         parent::__construct($attributes);
         $this->tokens = $tokens;

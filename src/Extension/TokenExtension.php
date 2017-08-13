@@ -7,17 +7,15 @@ namespace Phx\Extension;
  */
 interface TokenExtension extends Extension
 {
+    /**
+     * @param array $tokens
+     * @return void
+     */
+	public function modifyYaccTokens(array &$tokens);
 
-    const TYPE_TOKEN = 'token';
-
-    const TYPE_LEFT = 'left';
-
-    const TYPE_RIGHT = 'right';
-
-    const TYPE_NONASSOC = 'nonassoc';
-
-	/**
-	 * @return array
-	 */
-	public function extendTokens(): array;
+    /**
+     * @param array $tokens
+     * @return void
+     */
+	public function modifyLexerTokens(array &$tokens);
 }

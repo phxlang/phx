@@ -1,14 +1,11 @@
 <?php
 
-
-namespace Yacc\Parser\Token;
-
-use Phx\Yacc\Parser\Token\AbstractToken;
+namespace Phx\Yacc\Parser\Token;
 
 /**
  * @author Pascal Muenst <pascal@timesplinter.ch>
  */
-class Left extends AbstractToken
+class Right extends AbstractToken
 {
 
 }

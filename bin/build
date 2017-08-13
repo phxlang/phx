@@ -8,5 +8,19 @@ foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php
 	}
 }
 
-$parser = new Phx\Parser\ParserBuilder();
-$parser->build();
+array_shift($argv);
+$argv = array_values($argv);
+--$argc;
+
+if ($argc === 0 || 'phx' === $argv[0]) {
+    $parser = new \Phx\Parser\ParserBuilder();
+    $parser->addExtension(new \Phx\Extension\ForIn\ForInExtension());
+    $parser->addExtension(new \Phx\Extension\Spread\SpreadExtension());
+} elseif ('yacc' === $argv[0]) {
+    $parser = new \Phx\Parser\YaccParserBuilder();
+} else {
+    echo sprintf('Invalid parser: %s' . PHP_EOL, $argv[0]);
+    exit(1);
+}
+
+$parser->build(['--debug']);

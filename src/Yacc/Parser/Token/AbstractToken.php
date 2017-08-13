@@ -7,7 +7,7 @@ use Phx\Yacc\Parser\AbstractNode;
 /**
  * @author Pascal Muenst <pascal@timesplinter.ch>
  */
-class Token extends AbstractNode
+abstract class AbstractToken extends AbstractNode
 {
 
     /**

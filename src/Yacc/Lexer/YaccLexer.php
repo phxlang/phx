@@ -4,11 +4,7 @@ namespace Phx\Yacc\Lexer;
 
 use PhpParser\ErrorHandler;
 use PhpParser\Lexer;
-use PhpParser\Lexer\Emulative;
-use Phx\Parser\Tokens;
-use Phx\Parser\Yacc;
 use Phx\Parser\YaccTokens;
-use Prophecy\Doubler\ClassPatch\ReflectionClassNewInstancePatch;
 
 /**
  * @author Pascal <pascal@timesplinter.ch>
@@ -59,29 +55,40 @@ class YaccLexer extends Lexer
 
     protected function token_get_all(string $code)
     {
-        if (0 === preg_match_all('/(\'.\'|%%|[|%:;]|(?<=\s)[{}](?=\s)|\/\*.+?\*\/|\s+)/s', $code, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
+        $tokenTokens = [
+            '%token' => YaccTokens::T_TOKEN,
+            '%left' => YaccTokens::T_LEFT,
+            '%right' => YaccTokens::T_RIGHT,
+            '%nonassoc' => YaccTokens::T_NONASSOC,
+            '%expect' => YaccTokens::T_EXPECT,
+            '%pure_parser' => YaccTokens::T_PURE_PARSER
+        ];
+
+        if (0 === preg_match_all('/((?:(?:'.implode('|', array_keys($tokenTokens)).')(?=\s))|\'.\'|%%|[|:;]|(?<=\s)[{}](?=\s)|\/\*.+?\*\/|\s+)/s', $code, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
             return [];
         }
 
         $tokens = [];
-        $tokenValues = [];
         $pos = 0;
 
         foreach ($matches as $match) {
             list($tokenValue, $offset) = $match[0];
 
             if ($pos !== $offset) {
+                $buffer = substr($code, $pos, $offset-$pos);
                 //$tokens[] = substr($code, $pos, $offset-$pos);
-                $tokens[] = [YaccTokens::T_STRING, substr($code, $pos, $offset-$pos)];
+                $trimmedBuffer = trim($buffer);
+                if (0 !== preg_match('/^\d+$/', $trimmedBuffer)) {
+                    $tokens[] = [YaccTokens::T_NUM, (int) $trimmedBuffer];
+                } else {
+                    $tokens[] = [YaccTokens::T_STRING, $trimmedBuffer];
+                }
             }
-
 
             $token = [999];
 
             if ($tokenValue === '%%') {
                 $token = [YaccTokens::T_DOUBLE_PERCENTAGE];
-            } elseif ($tokenValue === '%') {
-                $token = [YaccTokens::T_PERCENTAGE];
             } elseif ($tokenValue === '{') {
                 $token = [YaccTokens::T_CURLY_OPEN];
             } elseif ($tokenValue === '}') {
@@ -94,13 +101,16 @@ class YaccLexer extends Lexer
                 $token = [YaccTokens::T_PIPE];
             } elseif (1 === preg_match('/^\s+$/', $tokenValue)) {
                 $token = [YaccTokens::T_WHITESPACE];
-            } elseif (1 === preg_match('/^\/\*.+?\*\/$/', $tokenValue)) {
+            } elseif (1 === preg_match('/^\/\*.+?\*\/$/s', $tokenValue)) {
                 $token = [YaccTokens::T_COMMENT];
             } elseif (1 === preg_match('/^\'.\'$/', $tokenValue)) {
                 $token = [YaccTokens::T_STRING];
+            } elseif (true === isset($tokenTokens[$tokenValue])) {
+                $token = [$tokenTokens[$tokenValue]];
             }
             $token[] = $tokenValue;
             $tokens[] = $token;
+
             $pos = $offset + strlen($tokenValue);
         }
 
@@ -108,18 +118,30 @@ class YaccLexer extends Lexer
         $actionStart = null;
         $tokenBuffer = '';
 
+        $curls = 0;
+
         $cleanedTokens = [];
 
         foreach ($tokens as $token) {
             if ($token[0] === YaccTokens::T_CURLY_OPEN) {
-                $inAction = true;
-            } elseif ($token[0] === YaccTokens::T_CURLY_CLOSE) {
+                ++$curls;
+                if ($inAction === false) {
+                    $cleanedTokens[] = $token;
+                    $inAction = true;
+                    continue;
+                }
+            } elseif ($token[0] === YaccTokens::T_CURLY_CLOSE && --$curls === 0) {
                 if ('' !== $tokenBuffer) {
-                    $cleanedTokens[] = [YaccTokens::T_STRING, trim($tokenBuffer)];
+                    $trimmedBuffer = trim(preg_replace('/\s+/', ' ', $tokenBuffer));
+                    $cleanedTokens[] = [YaccTokens::T_STRING, $trimmedBuffer];
                     $tokenBuffer = '';
                 }
                 $inAction = false;
-            } elseif (true === $inAction) {
+                $cleanedTokens[] = $token;
+                continue;
+            }
+
+            if (true === $inAction) {
                 $tokenBuffer .= $token[1];
                 continue;
             }
@@ -134,15 +156,19 @@ class YaccLexer extends Lexer
         $inRule = false;
 
         foreach ($tokens as $token) {
-            if (in_array($token[0], [YaccTokens::T_COLON, YaccTokens::T_PIPE])) {
+            if (in_array($token[0], [YaccTokens::T_COLON])) {
                 $inRule = true;
             } elseif (in_array($token[0], [YaccTokens::T_PIPE, YaccTokens::T_SEMICOLON, YaccTokens::T_CURLY_OPEN])) {
-                if ('' !== $tokenBuffer) {
-                    $cleanedTokens[] = [YaccTokens::T_STRING, trim($tokenBuffer)];
+                if('' !== $tokenBuffer) {
+                    $trimmedBuffer = trim(preg_replace('/\s+/', ' ', $tokenBuffer));
+                    $cleanedTokens[] = [YaccTokens::T_STRING, $trimmedBuffer];
                     $tokenBuffer = '';
                 }
+
                 if ($token[0] !== YaccTokens::T_PIPE) {
                     $inRule = false;
+                } else {
+                    $inRule = true;
                 }
             } elseif (true === $inRule) {
                 $tokenBuffer .= $token[1];
@@ -150,6 +176,12 @@ class YaccLexer extends Lexer
             }
 
             $cleanedTokens[] = $token;
+        }
+
+        $dump = '';
+
+        foreach ($cleanedTokens as $token) {
+            $dump .= $token[0] . ': ' . $token[1] . PHP_EOL;
         }
 
         return $cleanedTokens;

@@ -3,8 +3,12 @@
 namespace Phx\Parser;
 
 use Phx\Extension\Extension;
+use Phx\Extension\RuleExtension;
 use Phx\Extension\TokenExtension;
 use Phx\Parser\Node\Expr\UnpackArrayItem;
+use Phx\Yacc\Lexer\YaccLexer;
+use Phx\Yacc\Parser\Definition;
+use Phx\Yacc\Printer\Pretty;
 
 class ParserBuilder
 {
@@ -61,14 +65,8 @@ class ParserBuilder
 
 		$tokens = file_get_contents($tokensFile);
 
-		/*foreach ($this->extensions as $extension)
-        {
-            if (false === $extension instanceof TokenExtension) {
-                continue;
-            }
-
-            $tokens .= implode(PHP_EOL, $extension->getTokens()) . PHP_EOL;
-        }*/
+        $yaccParser = new Yacc(new YaccLexer());
+        $yaccPrinter = new Pretty();
 
 		foreach ($grammarFileToName as $grammarFile => $name) {
 			echo "Building temporary $name grammar file.\n";
@@ -76,11 +74,28 @@ class ParserBuilder
 			$grammarCode = file_get_contents($grammarFile);
 			$grammarCode = str_replace('%tokens', $tokens, $grammarCode);
 
+			/** @var Definition $parsedYacc */
+			$parsedYacc = $yaccParser->parse($grammarCode);
+
+			// @todo apply changes from $this->extensions
+            foreach ($this->extensions as $extension) {
+                echo 'Register extension: '.get_class($extension)."\n";
+                if ($extension instanceof RuleExtension) {
+                    $extension->modifyYaccRules($parsedYacc->rules);
+                }
+
+                if ($extension instanceof TokenExtension) {
+                    $extension->modifyYaccTokens($parsedYacc->tokens);
+                }
+            }
+
+			$grammarCode = $yaccPrinter->prettyPrint([$parsedYacc]);
 			$grammarCode = $this->resolveNodes($grammarCode);
 			$grammarCode = $this->resolveMacros($grammarCode);
 			$grammarCode = $this->resolveStackAccess($grammarCode);
 
-			//file_put_contents($tmpGrammarFile, $grammarCode);
+			file_put_contents(getcwd().'/jesus.yacc', $grammarCode);
+			file_put_contents($tmpGrammarFile, $grammarCode);
 
 			//file_put_contents('dump.y', $grammarCode);
 

@@ -1,11 +1,12 @@
 #!/usr/bin/env php
 <?php
 
+/** @var \Composer\Autoload\ClassLoader|null $loader */
 $loader = null;
 
-foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php'] as $file) {
+foreach ([__DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php'] as $file) {
 	if (true === file_exists($file)) {
-        require_once $loader = $file;
+        $loader = require_once $file;
 		break;
 	}
 }
@@ -41,7 +42,7 @@ if ($argc === 0) {
     }
 
     $transpiler = \Phx\Common\PhxTranspilerBuilder::create()->build();
-    eval($transpiler->fromString('<?php ' . $argv[1]));
+    evalCode($transpiler->fromString('<?php ' . $argv[1]), $loader);
     exit(0);
 } else {
 	$scriptPath = realpath($argv[0]);
@@ -56,7 +57,7 @@ if ($argc === 0) {
     $code = $transpiler->fromFile($scriptPath);
 
 	file_put_contents(getcwd().'/dump.php', '<?php'.PHP_EOL.$code);
-	eval($code);
+    evalCode($code, $loader);
 	exit(0);
 }
 
@@ -66,4 +67,10 @@ function printHelp(): string
     echo '   -r <code>  Run PHP <code> without using script tags <?..?>' , PHP_EOL;
     echo '   -v         Version number' , PHP_EOL;
     exit(0);
+}
+
+function evalCode(string $code, \Composer\Autoload\ClassLoader $loader)
+{
+    $loader->unregister();
+    eval($code);
 }

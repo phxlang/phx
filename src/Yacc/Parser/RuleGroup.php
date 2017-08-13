@@ -7,17 +7,23 @@ namespace Phx\Yacc\Parser;
  */
 class RuleGroup extends AbstractNode
 {
-    protected $name;
+    /**
+     * @var string
+     */
+    public $name;
 
-    protected $list;
+    /**
+     * @var array|Rule[]
+     */
+    public $list;
 
     /**
      * RuleGroup constructor.
-     * @param $name
-     * @param $list
-     * @param $attributes
+     * @param string $name
+     * @param array $list
+     * @param array $attributes
      */
-    public function __construct($name, $list, $attributes)
+    public function __construct(string $name, array $list, array $attributes)
     {
         parent::__construct($attributes);
         $this->name = $name;

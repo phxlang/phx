@@ -1,36 +1,55 @@
 <?php
 
 namespace Phx\Extension\ForIn;
+
 use PhpParser\Node\Stmt\Foreach_;
 use Phx\Extension\TokenExtension;
-use Phx\Extension\YaccExtension;
+use Phx\Extension\RuleExtension;
+use Phx\Yacc\Parser\Action;
+use Phx\Yacc\Parser\Rule;
+use Phx\Yacc\Parser\RuleGroup;
+use Phx\Yacc\Parser\Token\Token;
 
 /**
  * @author Pascal Muenst <pascal@timesplinter.ch>
  */
-class ForInExtension implements TokenExtension, YaccExtension
+class ForInExtension implements RuleExtension, TokenExtension
 {
 
+    const T_IN = 'T_IN';
+
     /**
-     * @return array
+     * @param RuleGroup[] $ruleGroups
      */
-    public function extendTokens(): array
+    public function modifyYaccRules(array &$ruleGroups)
     {
-        return [
-            'in' => [TokenExtension::TYPE_TOKEN, 'T_IN']
-        ];
+        foreach ($ruleGroups as $group) {
+            if ($group->name === 'non_empty_statement') {
+                $group->list[] = new Rule(
+                    "T_FOR '(' foreach_variable ".self::T_IN." expr ')' foreach_statement",
+                    new Action("$$ = \\".Foreach_::class."[$5, $3[0], ['keyVar' => null, 'byRef' => $3[1], 'stmts' => $7]];")
+                );
+            } elseif ($group->name === 'reserved_non_modifiers') {
+                $group->list[] = new Rule(self::T_IN, null, []);
+            }
+        }
     }
 
     /**
-     * @return array
+     * @param array $tokens
+     * @return void
      */
-    public function extendYacc(): array
+    public function modifyYaccTokens(array &$tokens)
     {
-        return [
-            'non_empty_statement' => [
-                "T_FOR '(' foreach_variable T_IN expr ')' foreach_statement" =>
-                    "{ $$ = ".Foreach_::class."[$5, $3[0], ['keyVar' => null, 'byRef' => $3[1], 'stmts' => $7]]; }"
-            ]
-        ];
+        $tokens[] = new Token([self::T_IN], []);
+    }
+
+    /**
+     * @param array $tokens
+     * @return mixed
+     */
+    public function modifyLexerTokens(array &$tokens)
+    {
+        $tokens['in'] = self::T_IN;
     }
 }

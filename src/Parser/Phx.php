@@ -234,8 +234,8 @@ class Phx extends \PhpParser\ParserAbstract
     );
 
     protected $action = array(
-          590,  591,  592,  593,  594,  381,  595,  596,  597,  634,
-          635,  487,   29,  101,  102,  103,  104,  105,  106,  107,
+          590,  591,  592,  593,  594,  381,  595,  596,  597,  633,
+          634,  487,   29,  101,  102,  103,  104,  105,  106,  107,
           108,  109,  110,  111,  112,-32766,-32766,-32766,   97,   98,
            99,    0,  245, -228, -282,-32766,-32766,-32766, -228, -487,
          1089,  551, 1092, 1090,  100,-32766, 1044,-32766,-32766,-32766,
@@ -243,12 +243,12 @@ class Phx extends \PhpParser\ParserAbstract
         -32766,-32766,-32766,  293,-32766,  278,  599,  600,  601,  602,
           603,  604,  605,-32766,  269,  666,  876,  877,  878,  875,
           874,  873,  606,  607,  608,  609,  610,  611,  612,  613,
-          614,  615,  616,  637,  638,  639,  640,  641,  629,  630,
-          631,  632,  633,  618,  619,  620,  621,  622,  623,  624,
-          660,  661,  662,  663,  664,  665,  625,  626,  627,  628,
-          658,  649,  647,  648,  644,  645,  382,  636,  642,  643,
-          650,  651,  653,  652,  654,  655, -441,  672,   74,   75,
-           76,  646,  657,  656,  686,  687,  617,   43,   44,  398,
+          614,  615,  616,  636,  637,  638,  639,  640,  628,  629,
+          630,  631,  632,  617,  618,  619,  620,  621,  622,  623,
+          660,  661,  662,  663,  664,  665,  624,  625,  626,  627,
+          657,  648,  646,  647,  643,  644,  382,  635,  641,  642,
+          649,  650,  652,  651,  653,  654, -441,  672,   74,   75,
+           76,  645,  656,  655,  686,  687,  658,   43,   44,  398,
            45,   46,-32766,-32766,-32766,  231,   47,   48,   28,   49,
            77,   78,   79,   80,   81,   82,   83,   84,   85,   86,
            87,   88,   89,   90,   91,   92,   93,   94,   95,   96,
@@ -257,14 +257,14 @@ class Phx extends \PhpParser\ParserAbstract
            53,  225,  226,   54,   55,   56,   57,   58,   59,   60,
            61, -441,   22,  238,   62,  353,  128, -227, 1003, -441,
          1008, 1009,  668,  365, 1041,  246, -477,  558, 1007,-32766,
-        -32766,-32766, 1041,  746,-32767,-32767,-32767,-32767,   92,   93,
+        -32766,-32766, 1041,  745,-32767,-32767,-32767,-32767,   92,   93,
            94,   95,   96, -173,   27,  228,  233,  357, -488,-32766,
           271,-32766,-32766,-32766,-32766,  264,  118,  424,  876,  877,
           878,  875,  874,  873,  868,  411,  412,  122,   25,  668,
            94,   95,   96,  831,  415,  416,   24, 1013, 1014, 1015,
          1016, 1010, 1011,  249, 1058,  671, -441, -441,  425, 1017,
          1012,  355,-32766,-32766,-32766,    7, 1041,   64,  252,  261,
-         1086,  266,  270,  399, -132, -132, -132,   -4,  746,  400,
+         1086,  266,  270,  399, -132, -132, -132,   -4,  745,  400,
           270,  475,-32766,  735,-32766,-32766,   33,   18,  401, -132,
           402, -132,  403, -132,  404, -132,  369,  405, -132, -132,
          -132,   35,   36,  406,  354,  425,   37,  407,  355, -227,
@@ -272,10 +272,10 @@ class Phx extends \PhpParser\ParserAbstract
           252,  410, -479, -443,  721,  767,  413,  414,  798,   22,
          1055, -441, -441,   42,   41,  227, -251,  123,  231, -441,
          -441, 1041, -477,  393,  270, 1007,   39,  539,  399,  350,
-         -172,  748,  556, -132,  400,  746,-32766,-32766,  735, -173,
+         -172,  748,  556, -132,  400,  745,-32766,-32766,  735, -173,
           299,   33,   18,  401, -488,  402, -488,  403, 1021,  404,
           825,  826,  405,  991,  984,-32766,   35,   36,  406,  354,
-          343,   37,  407,  560, -443,   63,  260,  746,  292,  294,
+          343,   37,  407,  560, -443,   63,  260,  745,  292,  294,
           408,  409,  416, -232,   30,  254,  410,  991, -443,  678,
           767,  413,  414,  124,  252,  222, -443,  253, -446,  312,
         -32766,-32766,-32766,  540,   66,  569,  355,  117,  282,  270,
@@ -283,20 +283,20 @@ class Phx extends \PhpParser\ParserAbstract
         -32766,  400,-32766,-32766,-32766,  735,  524,  525,   33,   18,
           401, -442,  402,  134,  403,  -89,  404,   67,  799,  405,
           122, 1041,  121,   35,   36,  406,  113,  399,   37,  407,
-          114,  746,   63,  400,  538,  292,  294,  735, -479,  119,
+          114,  745,   63,  400,  538,  292,  294,  735, -479,  119,
            33,   18,  401,  410,  402, 1041,  403,  120,  404, 1059,
           127,  405, -251,  131,  984,   35,   36,  406,  248,  563,
-           37,  407,  568,  746,   63,  351, -172,  292,  294,-32766,
+           37,  407,  568,  745,   63,  351, -172,  292,  294,-32766,
         -32766,-32766, -442,  748,  556,  410,  825,  826,  984,  511,
            19,  130,  317,  391,    6,  573, -442,  686,  687,-32766,
-          232,  562,  504,  505, -442,  745, -445,  825,  826,  270,
+          232,  562,  504,  505, -442,  744, -445,  825,  826,  270,
           129,  399,  865,  574,  760,  748,  556,  400,  853,  584,
           230,  735,  229,  245,   33,   18,  401,  100,  402,   40,
           403,  534,  404,  270,  326,  405,  443,  305, 1091,   35,
-           36,  406,  508,  399,   37,  407,  520,  746,   63,  400,
+           36,  406,  508,  399,   37,  407,  520,  745,   63,  400,
           364,  292,  294,  735,  366,  447,   33,   18,  401,  410,
           402,  461,  403,  463,  404,  668,  669,  405,  702, 1084,
-          512,   35,   36,  406,  446,  561,   37,  407,  980,  746,
+          512,   35,   36,  406,  446,  561,   37,  407,  980,  745,
            63,  535,-32766,  292,  294,  452,  549,  457,  220,  748,
           556,  410,  466,  769,  984,  516, -400,  768,   10,  -81,
           762,  262,  528,  517,   31,  502,  268, 1020,  229,    0,
@@ -520,7 +520,7 @@ class Phx extends \PhpParser\ParserAbstract
     protected $actionDefault = array(
             3,32767,32767,32767,32767,32767,32767,   89,32767,32767,
         32767,32767,32767,32767,32767,32767,32767,32767,32767,32767,
-        32767,32767,  490,  490,  490,   89,  302,32767,32767,32767,
+        32767,32767,  489,  489,  489,   89,  302,32767,32767,32767,
         32767,  302,  302,32767,  481,  439,  439,  439,  439,  439,
           439,  439,  481,32767,32767,32767,32767,32767,  381,32767,
         32767,32767,32767,32767,32767,32767,32767,32767,32767,32767,
@@ -534,7 +534,7 @@ class Phx extends \PhpParser\ParserAbstract
         32767,32767,32767,32767,32767,32767,32767,32767,32767,  486,
         32767,32767,32767,32767,32767,32767,32767,32767,32767,32767,
         32767,32767,32767,32767,32767,32767,32767,32767,32767,32767,
-        32767,  364,  365,  367,  368,  301,  440,  489,  250,  485,
+        32767,  364,  365,  367,  368,  301,  440,  490,  250,  485,
           300,  125,  261,  252,  204,  298,  236,  129,  329,  382,
           331,  380,  384,  330,  307,  311,  312,  313,  314,  315,
           316,  317,  318,  319,  320,  321,  322,  305,  306,  383,
@@ -572,7 +572,7 @@ class Phx extends \PhpParser\ParserAbstract
         32767,32767,32767,32767,32767,  441,32767,32767,32767,32767,
           235,32767,32767,32767,32767,32767,32767,32767,32767,32767,
         32767,32767,32767,32767,32767,32767,32767,32767,32767,   83,
-           61,32767,  278,32767,32767,32767,32767,32767,32767,32767,
+           60,32767,  278,32767,32767,32767,32767,32767,32767,32767,
         32767,32767,32767,32767,32767,32767,  131,  131,    3,    3,
           131,  131,  131,  131,  131,  131,  131,  131,  131,  131,
           131,  131,  131,  131,  131,  263,  164,  263,  217,  263,
@@ -591,7 +591,7 @@ class Phx extends \PhpParser\ParserAbstract
           185,  186,  187,  188,  189,  190,  191,  192,  193,  194,
           195,  196,  197,  198,  152,  199,  153,  170,  171,  172,
           201,  173,  154,  155,  156,  157,  174,  158,  202,  138,
-          175,  159,  176,  177,  160,  541,  207,  444,  743,  712,
+          175,  159,  176,  177,  160,  541,  207,  444,  742,  712,
           479,  864,  554,    5,  205,  533,  862,  480,  718,  675,
           322,  267,  205,  449,  449,  449,  251,  449,  800,  285,
           981,  779,  676,  578,  441,  442,  809,  804,  467,  464,
@@ -602,13 +602,13 @@ class Phx extends \PhpParser\ParserAbstract
           493,  513,  756,  490, 1076,  982,  473,  449,  449,  816,
          1068,  776,  465,  486,  449,  449,  698,  449, 1079,  692,
           834,  879,  450,  983, 1037,  711,  977,  703,  738,  703,
-          740,  302,  476,  430,  430,  430,  430,  430,  430,  430,
+          739,  302,  476,  430,  430,  430,  430,  430,  430,  430,
           430,  430,  430,  430,  430,  430,  430,  429,  429,  429,
           429,  429,  429,  429,  429,  429,  429,  429,  429,  429,
           429, 1060,  460,  304,  307,  456,  481,  482,  484,  470,
           472, 1077, 1077,  942,  679,  819,  694,  694,  472,  494,
           514,  704,  704,  704,  706,  830,  693,  823, 1077,  477,
-          489,  684, 1049,  734,  729,  730,  744,  685,  731,  682,
+          489,  684, 1049,  734,  729,  730,  743,  685,  731,  682,
           732,  733,  291,  506,  683,  283,  737,  496,  498,  547,
           775,  316,  550,  313,  699,  839,  696,  565,  521,  973,
           334,  515,  338,  324,  324,  272,  273,  289,  474,  330,
@@ -699,7 +699,7 @@ class Phx extends \PhpParser\ParserAbstract
           497,  388,  705,  360,  697,  385,  700,  359,  709,  136,
           523,  394,  713,    1,  715,  451,  747,  297,  723,  298,
           526,  725,  458,  727,  728,  303,  309,  310,  888,  469,
-          459,  739,  209,  462,  741,  296,  742,  750,  339,  301,
+          459,  746,  209,  462,  740,  296,  741,  750,  339,  301,
           371,  529,  503,  485,  518,  418,  373,  491,  234,  471,
           992,  773,  380,  368,  787,  284,  795,  570,  803,  806,
           419,  420,  378,  818,  379,  828,  822, 1000,  372,  833,
@@ -781,8 +781,8 @@ class Phx extends \PhpParser\ParserAbstract
             1,    2,    2,    3,    1,    3,    2,    3,    1,    3,
             2,    0,    1,    1,    1,    1,    1,    3,    7,   10,
             5,    7,    9,    5,    3,    3,    3,    3,    3,    3,
-            1,    2,    5,    7,    7,    9,    5,    6,    3,    3,
-            2,    1,    1,    1,    0,    2,    1,    3,    8,    0,
+            1,    2,    5,    7,    9,    5,    6,    3,    3,    2,
+            1,    7,    1,    1,    0,    2,    1,    3,    8,    0,
             4,    2,    1,    3,    0,    1,    0,    1,   10,    7,
             6,    5,    1,    2,    2,    0,    2,    0,    2,    0,
             2,    2,    1,    3,    1,    4,    1,    4,    1,    1,
@@ -814,9 +814,520 @@ class Phx extends \PhpParser\ParserAbstract
             4,    1,    4,    1,    1,    3,    1,    4,    2,    2,
             3,    1,    4,    4,    3,    3,    3,    1,    3,    1,
             1,    3,    1,    1,    4,    3,    1,    1,    1,    3,
-            3,    0,    1,    3,    1,    3,    1,    4,    2,    2,
-            0,    2,    2,    1,    2,    1,    1,    1,    4,    3,
+            3,    0,    1,    3,    1,    3,    1,    4,    2,    0,
+            2,    2,    2,    1,    2,    1,    1,    1,    4,    3,
             3,    3,    6,    3,    1,    1,    2,    1
+    );
+
+    protected $productions = array(
+        "start : start",
+        "start : top_statement_list",
+        "top_statement_list_ex : top_statement_list_ex top_statement",
+        "top_statement_list_ex : /* empty */",
+        "top_statement_list : top_statement_list_ex",
+        "reserved_non_modifiers : T_INCLUDE",
+        "reserved_non_modifiers : T_INCLUDE_ONCE",
+        "reserved_non_modifiers : T_EVAL",
+        "reserved_non_modifiers : T_REQUIRE",
+        "reserved_non_modifiers : T_REQUIRE_ONCE",
+        "reserved_non_modifiers : T_LOGICAL_OR",
+        "reserved_non_modifiers : T_LOGICAL_XOR",
+        "reserved_non_modifiers : T_LOGICAL_AND",
+        "reserved_non_modifiers : T_INSTANCEOF",
+        "reserved_non_modifiers : T_NEW",
+        "reserved_non_modifiers : T_CLONE",
+        "reserved_non_modifiers : T_EXIT",
+        "reserved_non_modifiers : T_IF",
+        "reserved_non_modifiers : T_ELSEIF",
+        "reserved_non_modifiers : T_ELSE",
+        "reserved_non_modifiers : T_ENDIF",
+        "reserved_non_modifiers : T_ECHO",
+        "reserved_non_modifiers : T_DO",
+        "reserved_non_modifiers : T_WHILE",
+        "reserved_non_modifiers : T_ENDWHILE",
+        "reserved_non_modifiers : T_FOR",
+        "reserved_non_modifiers : T_ENDFOR",
+        "reserved_non_modifiers : T_FOREACH",
+        "reserved_non_modifiers : T_ENDFOREACH",
+        "reserved_non_modifiers : T_DECLARE",
+        "reserved_non_modifiers : T_ENDDECLARE",
+        "reserved_non_modifiers : T_AS",
+        "reserved_non_modifiers : T_TRY",
+        "reserved_non_modifiers : T_CATCH",
+        "reserved_non_modifiers : T_FINALLY",
+        "reserved_non_modifiers : T_THROW",
+        "reserved_non_modifiers : T_USE",
+        "reserved_non_modifiers : T_INSTEADOF",
+        "reserved_non_modifiers : T_GLOBAL",
+        "reserved_non_modifiers : T_VAR",
+        "reserved_non_modifiers : T_UNSET",
+        "reserved_non_modifiers : T_ISSET",
+        "reserved_non_modifiers : T_EMPTY",
+        "reserved_non_modifiers : T_CONTINUE",
+        "reserved_non_modifiers : T_GOTO",
+        "reserved_non_modifiers : T_FUNCTION",
+        "reserved_non_modifiers : T_CONST",
+        "reserved_non_modifiers : T_RETURN",
+        "reserved_non_modifiers : T_PRINT",
+        "reserved_non_modifiers : T_YIELD",
+        "reserved_non_modifiers : T_LIST",
+        "reserved_non_modifiers : T_SWITCH",
+        "reserved_non_modifiers : T_ENDSWITCH",
+        "reserved_non_modifiers : T_CASE",
+        "reserved_non_modifiers : T_DEFAULT",
+        "reserved_non_modifiers : T_BREAK",
+        "reserved_non_modifiers : T_ARRAY",
+        "reserved_non_modifiers : T_CALLABLE",
+        "reserved_non_modifiers : T_EXTENDS",
+        "reserved_non_modifiers : T_IMPLEMENTS",
+        "reserved_non_modifiers : T_NAMESPACE",
+        "reserved_non_modifiers : T_TRAIT",
+        "reserved_non_modifiers : T_INTERFACE",
+        "reserved_non_modifiers : T_CLASS",
+        "reserved_non_modifiers : T_CLASS_C",
+        "reserved_non_modifiers : T_TRAIT_C",
+        "reserved_non_modifiers : T_FUNC_C",
+        "reserved_non_modifiers : T_METHOD_C",
+        "reserved_non_modifiers : T_LINE",
+        "reserved_non_modifiers : T_FILE",
+        "reserved_non_modifiers : T_DIR",
+        "reserved_non_modifiers : T_NS_C",
+        "reserved_non_modifiers : T_HALT_COMPILER",
+        "reserved_non_modifiers : T_IN",
+        "semi_reserved : reserved_non_modifiers",
+        "semi_reserved : T_STATIC",
+        "semi_reserved : T_ABSTRACT",
+        "semi_reserved : T_FINAL",
+        "semi_reserved : T_PRIVATE",
+        "semi_reserved : T_PROTECTED",
+        "semi_reserved : T_PUBLIC",
+        "identifier : T_STRING",
+        "identifier : semi_reserved",
+        "namespace_name_parts : T_STRING",
+        "namespace_name_parts : namespace_name_parts T_NS_SEPARATOR T_STRING",
+        "namespace_name : namespace_name_parts",
+        "semi : ';'",
+        "semi : error",
+        "no_comma : /* empty */",
+        "no_comma : ','",
+        "top_statement : statement",
+        "top_statement : function_declaration_statement",
+        "top_statement : class_declaration_statement",
+        "top_statement : T_HALT_COMPILER",
+        "top_statement : T_NAMESPACE namespace_name semi",
+        "top_statement : T_NAMESPACE namespace_name '{' top_statement_list '}'",
+        "top_statement : T_NAMESPACE '{' top_statement_list '}'",
+        "top_statement : T_USE use_declarations semi",
+        "top_statement : T_USE use_type use_declarations semi",
+        "top_statement : group_use_declaration semi",
+        "top_statement : T_CONST constant_declaration_list semi",
+        "use_type : T_FUNCTION",
+        "use_type : T_CONST",
+        "group_use_declaration : T_USE use_type namespace_name_parts T_NS_SEPARATOR '{' unprefixed_use_declarations '}'",
+        "group_use_declaration : T_USE use_type T_NS_SEPARATOR namespace_name_parts T_NS_SEPARATOR '{' unprefixed_use_declarations '}'",
+        "group_use_declaration : T_USE namespace_name_parts T_NS_SEPARATOR '{' inline_use_declarations '}'",
+        "group_use_declaration : T_USE T_NS_SEPARATOR namespace_name_parts T_NS_SEPARATOR '{' inline_use_declarations '}'",
+        "unprefixed_use_declarations : non_empty_unprefixed_use_declarations no_comma",
+        "non_empty_unprefixed_use_declarations : non_empty_unprefixed_use_declarations ',' unprefixed_use_declaration",
+        "non_empty_unprefixed_use_declarations : unprefixed_use_declaration",
+        "use_declarations : non_empty_use_declarations no_comma",
+        "non_empty_use_declarations : non_empty_use_declarations ',' use_declaration",
+        "non_empty_use_declarations : use_declaration",
+        "inline_use_declarations : non_empty_inline_use_declarations no_comma",
+        "non_empty_inline_use_declarations : non_empty_inline_use_declarations ',' inline_use_declaration",
+        "non_empty_inline_use_declarations : inline_use_declaration",
+        "unprefixed_use_declaration : namespace_name",
+        "unprefixed_use_declaration : namespace_name T_AS T_STRING",
+        "use_declaration : unprefixed_use_declaration",
+        "use_declaration : T_NS_SEPARATOR unprefixed_use_declaration",
+        "inline_use_declaration : unprefixed_use_declaration",
+        "inline_use_declaration : use_type unprefixed_use_declaration",
+        "constant_declaration_list : non_empty_constant_declaration_list no_comma",
+        "non_empty_constant_declaration_list : non_empty_constant_declaration_list ',' constant_declaration",
+        "non_empty_constant_declaration_list : constant_declaration",
+        "constant_declaration : T_STRING '=' expr",
+        "class_const_list : non_empty_class_const_list no_comma",
+        "non_empty_class_const_list : non_empty_class_const_list ',' class_const",
+        "non_empty_class_const_list : class_const",
+        "class_const : identifier '=' expr",
+        "inner_statement_list_ex : inner_statement_list_ex inner_statement",
+        "inner_statement_list_ex : /* empty */",
+        "inner_statement_list : inner_statement_list_ex",
+        "inner_statement : statement",
+        "inner_statement : function_declaration_statement",
+        "inner_statement : class_declaration_statement",
+        "inner_statement : T_HALT_COMPILER",
+        "non_empty_statement : '{' inner_statement_list '}'",
+        "non_empty_statement : T_IF '(' expr ')' statement elseif_list else_single",
+        "non_empty_statement : T_IF '(' expr ')' ':' inner_statement_list new_elseif_list new_else_single T_ENDIF ';'",
+        "non_empty_statement : T_WHILE '(' expr ')' while_statement",
+        "non_empty_statement : T_DO statement T_WHILE '(' expr ')' ';'",
+        "non_empty_statement : T_FOR '(' for_expr ';' for_expr ';' for_expr ')' for_statement",
+        "non_empty_statement : T_SWITCH '(' expr ')' switch_case_list",
+        "non_empty_statement : T_BREAK optional_expr semi",
+        "non_empty_statement : T_CONTINUE optional_expr semi",
+        "non_empty_statement : T_RETURN optional_expr semi",
+        "non_empty_statement : T_GLOBAL global_var_list semi",
+        "non_empty_statement : T_STATIC static_var_list semi",
+        "non_empty_statement : T_ECHO expr_list semi",
+        "non_empty_statement : T_INLINE_HTML",
+        "non_empty_statement : expr semi",
+        "non_empty_statement : T_UNSET '(' variables_list ')' semi",
+        "non_empty_statement : T_FOREACH '(' expr T_AS foreach_variable ')' foreach_statement",
+        "non_empty_statement : T_FOREACH '(' expr T_AS variable T_DOUBLE_ARROW foreach_variable ')' foreach_statement",
+        "non_empty_statement : T_DECLARE '(' declare_list ')' declare_statement",
+        "non_empty_statement : T_TRY '{' inner_statement_list '}' catches optional_finally",
+        "non_empty_statement : T_THROW expr semi",
+        "non_empty_statement : T_GOTO T_STRING semi",
+        "non_empty_statement : T_STRING ':'",
+        "non_empty_statement : error",
+        "non_empty_statement : T_FOR '(' foreach_variable T_IN expr ')' foreach_statement",
+        "statement : non_empty_statement",
+        "statement : ';'",
+        "catches : /* empty */",
+        "catches : catches catch",
+        "name_union : name",
+        "name_union : name_union '|' name",
+        "catch : T_CATCH '(' name_union T_VARIABLE ')' '{' inner_statement_list '}'",
+        "optional_finally : /* empty */",
+        "optional_finally : T_FINALLY '{' inner_statement_list '}'",
+        "variables_list : non_empty_variables_list no_comma",
+        "non_empty_variables_list : variable",
+        "non_empty_variables_list : non_empty_variables_list ',' variable",
+        "optional_ref : /* empty */",
+        "optional_ref : '&'",
+        "optional_ellipsis : /* empty */",
+        "optional_ellipsis : T_ELLIPSIS",
+        "function_declaration_statement : T_FUNCTION optional_ref T_STRING '(' parameter_list ')' optional_return_type '{' inner_statement_list '}'",
+        "class_declaration_statement : class_entry_type T_STRING extends_from implements_list '{' class_statement_list '}'",
+        "class_declaration_statement : T_INTERFACE T_STRING interface_extends_list '{' class_statement_list '}'",
+        "class_declaration_statement : T_TRAIT T_STRING '{' class_statement_list '}'",
+        "class_entry_type : T_CLASS",
+        "class_entry_type : T_ABSTRACT T_CLASS",
+        "class_entry_type : T_FINAL T_CLASS",
+        "extends_from : /* empty */",
+        "extends_from : T_EXTENDS class_name",
+        "interface_extends_list : /* empty */",
+        "interface_extends_list : T_EXTENDS class_name_list",
+        "implements_list : /* empty */",
+        "implements_list : T_IMPLEMENTS class_name_list",
+        "class_name_list : non_empty_class_name_list no_comma",
+        "non_empty_class_name_list : class_name",
+        "non_empty_class_name_list : non_empty_class_name_list ',' class_name",
+        "for_statement : statement",
+        "for_statement : ':' inner_statement_list T_ENDFOR ';'",
+        "foreach_statement : statement",
+        "foreach_statement : ':' inner_statement_list T_ENDFOREACH ';'",
+        "declare_statement : non_empty_statement",
+        "declare_statement : ';'",
+        "declare_statement : ':' inner_statement_list T_ENDDECLARE ';'",
+        "declare_list : non_empty_declare_list no_comma",
+        "non_empty_declare_list : declare_list_element",
+        "non_empty_declare_list : non_empty_declare_list ',' declare_list_element",
+        "declare_list_element : T_STRING '=' expr",
+        "switch_case_list : '{' case_list '}'",
+        "switch_case_list : '{' ';' case_list '}'",
+        "switch_case_list : ':' case_list T_ENDSWITCH ';'",
+        "switch_case_list : ':' ';' case_list T_ENDSWITCH ';'",
+        "case_list : /* empty */",
+        "case_list : case_list case",
+        "case : T_CASE expr case_separator inner_statement_list",
+        "case : T_DEFAULT case_separator inner_statement_list",
+        "case_separator : ':'",
+        "case_separator : ';'",
+        "while_statement : statement",
+        "while_statement : ':' inner_statement_list T_ENDWHILE ';'",
+        "elseif_list : /* empty */",
+        "elseif_list : elseif_list elseif",
+        "elseif : T_ELSEIF '(' expr ')' statement",
+        "new_elseif_list : /* empty */",
+        "new_elseif_list : new_elseif_list new_elseif",
+        "new_elseif : T_ELSEIF '(' expr ')' ':' inner_statement_list",
+        "else_single : /* empty */",
+        "else_single : T_ELSE statement",
+        "new_else_single : /* empty */",
+        "new_else_single : T_ELSE ':' inner_statement_list",
+        "foreach_variable : variable",
+        "foreach_variable : '&' variable",
+        "foreach_variable : list_expr",
+        "foreach_variable : array_short_syntax",
+        "parameter_list : non_empty_parameter_list no_comma",
+        "parameter_list : /* empty */",
+        "non_empty_parameter_list : parameter",
+        "non_empty_parameter_list : non_empty_parameter_list ',' parameter",
+        "parameter : optional_param_type optional_ref optional_ellipsis T_VARIABLE",
+        "parameter : optional_param_type optional_ref optional_ellipsis T_VARIABLE '=' expr",
+        "type_expr : type",
+        "type_expr : '?' type",
+        "type : name",
+        "type : T_ARRAY",
+        "type : T_CALLABLE",
+        "optional_param_type : /* empty */",
+        "optional_param_type : type_expr",
+        "optional_return_type : /* empty */",
+        "optional_return_type : ':' type_expr",
+        "argument_list : '(' ')'",
+        "argument_list : '(' non_empty_argument_list no_comma ')'",
+        "non_empty_argument_list : argument",
+        "non_empty_argument_list : non_empty_argument_list ',' argument",
+        "argument : expr",
+        "argument : '&' variable",
+        "argument : T_ELLIPSIS expr",
+        "global_var_list : non_empty_global_var_list no_comma",
+        "non_empty_global_var_list : non_empty_global_var_list ',' global_var",
+        "non_empty_global_var_list : global_var",
+        "global_var : simple_variable",
+        "static_var_list : non_empty_static_var_list no_comma",
+        "non_empty_static_var_list : non_empty_static_var_list ',' static_var",
+        "non_empty_static_var_list : static_var",
+        "static_var : T_VARIABLE",
+        "static_var : T_VARIABLE '=' expr",
+        "class_statement_list : class_statement_list class_statement",
+        "class_statement_list : /* empty */",
+        "class_statement : variable_modifiers property_declaration_list ';'",
+        "class_statement : method_modifiers T_CONST class_const_list ';'",
+        "class_statement : method_modifiers T_FUNCTION optional_ref identifier '(' parameter_list ')' optional_return_type method_body",
+        "class_statement : T_USE class_name_list trait_adaptations",
+        "trait_adaptations : ';'",
+        "trait_adaptations : '{' trait_adaptation_list '}'",
+        "trait_adaptation_list : /* empty */",
+        "trait_adaptation_list : trait_adaptation_list trait_adaptation",
+        "trait_adaptation : trait_method_reference_fully_qualified T_INSTEADOF class_name_list ';'",
+        "trait_adaptation : trait_method_reference T_AS member_modifier identifier ';'",
+        "trait_adaptation : trait_method_reference T_AS member_modifier ';'",
+        "trait_adaptation : trait_method_reference T_AS T_STRING ';'",
+        "trait_adaptation : trait_method_reference T_AS reserved_non_modifiers ';'",
+        "trait_method_reference_fully_qualified : name T_PAAMAYIM_NEKUDOTAYIM identifier",
+        "trait_method_reference : trait_method_reference_fully_qualified",
+        "trait_method_reference : identifier",
+        "method_body : ';'",
+        "method_body : '{' inner_statement_list '}'",
+        "variable_modifiers : non_empty_member_modifiers",
+        "variable_modifiers : T_VAR",
+        "method_modifiers : /* empty */",
+        "method_modifiers : non_empty_member_modifiers",
+        "non_empty_member_modifiers : member_modifier",
+        "non_empty_member_modifiers : non_empty_member_modifiers member_modifier",
+        "member_modifier : T_PUBLIC",
+        "member_modifier : T_PROTECTED",
+        "member_modifier : T_PRIVATE",
+        "member_modifier : T_STATIC",
+        "member_modifier : T_ABSTRACT",
+        "member_modifier : T_FINAL",
+        "property_declaration_list : non_empty_property_declaration_list no_comma",
+        "non_empty_property_declaration_list : property_declaration",
+        "non_empty_property_declaration_list : non_empty_property_declaration_list ',' property_declaration",
+        "property_declaration : T_VARIABLE",
+        "property_declaration : T_VARIABLE '=' expr",
+        "expr_list : non_empty_expr_list no_comma",
+        "non_empty_expr_list : non_empty_expr_list ',' expr",
+        "non_empty_expr_list : expr",
+        "for_expr : /* empty */",
+        "for_expr : expr_list",
+        "expr : variable",
+        "expr : list_expr '=' expr",
+        "expr : array_short_syntax '=' expr",
+        "expr : variable '=' expr",
+        "expr : variable '=' '&' variable",
+        "expr : new_expr",
+        "expr : T_CLONE expr",
+        "expr : variable T_PLUS_EQUAL expr",
+        "expr : variable T_MINUS_EQUAL expr",
+        "expr : variable T_MUL_EQUAL expr",
+        "expr : variable T_DIV_EQUAL expr",
+        "expr : variable T_CONCAT_EQUAL expr",
+        "expr : variable T_MOD_EQUAL expr",
+        "expr : variable T_AND_EQUAL expr",
+        "expr : variable T_OR_EQUAL expr",
+        "expr : variable T_XOR_EQUAL expr",
+        "expr : variable T_SL_EQUAL expr",
+        "expr : variable T_SR_EQUAL expr",
+        "expr : variable T_POW_EQUAL expr",
+        "expr : variable T_INC",
+        "expr : T_INC variable",
+        "expr : variable T_DEC",
+        "expr : T_DEC variable",
+        "expr : expr T_BOOLEAN_OR expr",
+        "expr : expr T_BOOLEAN_AND expr",
+        "expr : expr T_LOGICAL_OR expr",
+        "expr : expr T_LOGICAL_AND expr",
+        "expr : expr T_LOGICAL_XOR expr",
+        "expr : expr '|' expr",
+        "expr : expr '&' expr",
+        "expr : expr '^' expr",
+        "expr : expr '.' expr",
+        "expr : expr '+' expr",
+        "expr : expr '-' expr",
+        "expr : expr '*' expr",
+        "expr : expr '/' expr",
+        "expr : expr '%' expr",
+        "expr : expr T_SL expr",
+        "expr : expr T_SR expr",
+        "expr : expr T_POW expr",
+        "expr : '+' expr",
+        "expr : '-' expr",
+        "expr : '!' expr",
+        "expr : '~' expr",
+        "expr : expr T_IS_IDENTICAL expr",
+        "expr : expr T_IS_NOT_IDENTICAL expr",
+        "expr : expr T_IS_EQUAL expr",
+        "expr : expr T_IS_NOT_EQUAL expr",
+        "expr : expr T_SPACESHIP expr",
+        "expr : expr '<' expr",
+        "expr : expr T_IS_SMALLER_OR_EQUAL expr",
+        "expr : expr '>' expr",
+        "expr : expr T_IS_GREATER_OR_EQUAL expr",
+        "expr : expr T_INSTANCEOF class_name_reference",
+        "expr : '(' expr ')'",
+        "expr : expr '?' expr ':' expr",
+        "expr : expr '?' ':' expr",
+        "expr : expr T_COALESCE expr",
+        "expr : T_ISSET '(' variables_list ')'",
+        "expr : T_EMPTY '(' expr ')'",
+        "expr : T_INCLUDE expr",
+        "expr : T_INCLUDE_ONCE expr",
+        "expr : T_EVAL '(' expr ')'",
+        "expr : T_REQUIRE expr",
+        "expr : T_REQUIRE_ONCE expr",
+        "expr : T_INT_CAST expr",
+        "expr : T_DOUBLE_CAST expr",
+        "expr : T_STRING_CAST expr",
+        "expr : T_ARRAY_CAST expr",
+        "expr : T_OBJECT_CAST expr",
+        "expr : T_BOOL_CAST expr",
+        "expr : T_UNSET_CAST expr",
+        "expr : T_EXIT exit_expr",
+        "expr : '@' expr",
+        "expr : scalar",
+        "expr : '`' backticks_expr '`'",
+        "expr : T_PRINT expr",
+        "expr : T_YIELD",
+        "expr : T_YIELD expr",
+        "expr : T_YIELD expr T_DOUBLE_ARROW expr",
+        "expr : T_YIELD_FROM expr",
+        "expr : T_FUNCTION optional_ref '(' parameter_list ')' lexical_vars optional_return_type '{' inner_statement_list '}'",
+        "expr : T_STATIC T_FUNCTION optional_ref '(' parameter_list ')' lexical_vars optional_return_type '{' inner_statement_list '}'",
+        "anonymous_class : T_CLASS ctor_arguments extends_from implements_list '{' class_statement_list '}'",
+        "new_expr : T_NEW class_name_reference ctor_arguments",
+        "new_expr : T_NEW anonymous_class",
+        "lexical_vars : /* empty */",
+        "lexical_vars : T_USE '(' lexical_var_list ')'",
+        "lexical_var_list : non_empty_lexical_var_list no_comma",
+        "non_empty_lexical_var_list : lexical_var",
+        "non_empty_lexical_var_list : non_empty_lexical_var_list ',' lexical_var",
+        "lexical_var : optional_ref T_VARIABLE",
+        "function_call : name argument_list",
+        "function_call : callable_expr argument_list",
+        "function_call : class_name_or_var T_PAAMAYIM_NEKUDOTAYIM member_name argument_list",
+        "class_name : T_STATIC",
+        "class_name : name",
+        "name : namespace_name_parts",
+        "name : T_NS_SEPARATOR namespace_name_parts",
+        "name : T_NAMESPACE T_NS_SEPARATOR namespace_name_parts",
+        "class_name_reference : class_name",
+        "class_name_reference : new_variable",
+        "class_name_reference : error",
+        "class_name_or_var : class_name",
+        "class_name_or_var : dereferencable",
+        "exit_expr : /* empty */",
+        "exit_expr : '(' optional_expr ')'",
+        "backticks_expr : /* empty */",
+        "backticks_expr : T_ENCAPSED_AND_WHITESPACE",
+        "backticks_expr : encaps_list",
+        "ctor_arguments : /* empty */",
+        "ctor_arguments : argument_list",
+        "constant : name",
+        "constant : class_name_or_var T_PAAMAYIM_NEKUDOTAYIM identifier",
+        "constant : class_name_or_var T_PAAMAYIM_NEKUDOTAYIM error",
+        "array_short_syntax : '[' array_pair_list ']'",
+        "dereferencable_scalar : T_ARRAY '(' array_pair_list ')'",
+        "dereferencable_scalar : array_short_syntax",
+        "dereferencable_scalar : T_CONSTANT_ENCAPSED_STRING",
+        "scalar : T_LNUMBER",
+        "scalar : T_DNUMBER",
+        "scalar : T_LINE",
+        "scalar : T_FILE",
+        "scalar : T_DIR",
+        "scalar : T_CLASS_C",
+        "scalar : T_TRAIT_C",
+        "scalar : T_METHOD_C",
+        "scalar : T_FUNC_C",
+        "scalar : T_NS_C",
+        "scalar : dereferencable_scalar",
+        "scalar : constant",
+        "scalar : T_START_HEREDOC T_ENCAPSED_AND_WHITESPACE T_END_HEREDOC",
+        "scalar : T_START_HEREDOC T_END_HEREDOC",
+        "scalar : '\"' encaps_list '\"'",
+        "scalar : T_START_HEREDOC encaps_list T_END_HEREDOC",
+        "optional_expr : /* empty */",
+        "optional_expr : expr",
+        "dereferencable : variable",
+        "dereferencable : '(' expr ')'",
+        "dereferencable : dereferencable_scalar",
+        "callable_expr : callable_variable",
+        "callable_expr : '(' expr ')'",
+        "callable_expr : dereferencable_scalar",
+        "callable_variable : simple_variable",
+        "callable_variable : dereferencable '[' optional_expr ']'",
+        "callable_variable : constant '[' optional_expr ']'",
+        "callable_variable : dereferencable '{' expr '}'",
+        "callable_variable : function_call",
+        "callable_variable : dereferencable T_OBJECT_OPERATOR property_name argument_list",
+        "variable : callable_variable",
+        "variable : static_member",
+        "variable : dereferencable T_OBJECT_OPERATOR property_name",
+        "simple_variable : T_VARIABLE",
+        "simple_variable : '$' '{' expr '}'",
+        "simple_variable : '$' simple_variable",
+        "simple_variable : '$' error",
+        "static_member : class_name_or_var T_PAAMAYIM_NEKUDOTAYIM simple_variable",
+        "new_variable : simple_variable",
+        "new_variable : new_variable '[' optional_expr ']'",
+        "new_variable : new_variable '{' expr '}'",
+        "new_variable : new_variable T_OBJECT_OPERATOR property_name",
+        "new_variable : class_name T_PAAMAYIM_NEKUDOTAYIM simple_variable",
+        "new_variable : new_variable T_PAAMAYIM_NEKUDOTAYIM simple_variable",
+        "member_name : identifier",
+        "member_name : '{' expr '}'",
+        "member_name : simple_variable",
+        "property_name : T_STRING",
+        "property_name : '{' expr '}'",
+        "property_name : simple_variable",
+        "property_name : error",
+        "list_expr : T_LIST '(' list_expr_elements ')'",
+        "list_expr_elements : list_expr_elements ',' list_expr_element",
+        "list_expr_elements : list_expr_element",
+        "list_expr_element : variable",
+        "list_expr_element : list_expr",
+        "list_expr_element : expr T_DOUBLE_ARROW variable",
+        "list_expr_element : expr T_DOUBLE_ARROW list_expr",
+        "list_expr_element : /* empty */",
+        "array_pair_list : inner_array_pair_list",
+        "inner_array_pair_list : inner_array_pair_list ',' array_pair",
+        "inner_array_pair_list : array_pair",
+        "array_pair : expr T_DOUBLE_ARROW expr",
+        "array_pair : expr",
+        "array_pair : expr T_DOUBLE_ARROW '&' variable",
+        "array_pair : '&' variable",
+        "array_pair : /* empty */",
+        "array_pair : T_ELLIPSIS expr",
+        "encaps_list : encaps_list encaps_var",
+        "encaps_list : encaps_list encaps_string_part",
+        "encaps_list : encaps_var",
+        "encaps_list : encaps_string_part encaps_var",
+        "encaps_string_part : T_ENCAPSED_AND_WHITESPACE",
+        "encaps_base_var : T_VARIABLE",
+        "encaps_var : encaps_base_var",
+        "encaps_var : encaps_base_var '[' encaps_var_offset ']'",
+        "encaps_var : encaps_base_var T_OBJECT_OPERATOR T_STRING",
+        "encaps_var : T_DOLLAR_OPEN_CURLY_BRACES expr '}'",
+        "encaps_var : T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '}'",
+        "encaps_var : T_DOLLAR_OPEN_CURLY_BRACES T_STRING_VARNAME '[' expr ']' '}'",
+        "encaps_var : T_CURLY_OPEN variable '}'",
+        "encaps_var_offset : T_STRING",
+        "encaps_var_offset : T_NUM_STRING",
+        "encaps_var_offset : '-' T_NUM_STRING",
+        "encaps_var_offset : T_VARIABLE"
     );
 
     protected function reduceRule0() {
@@ -836,8 +1347,7 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule4() {
-         $startAttributes = $this->lookaheadStartAttributes; if (isset($startAttributes['comments'])) { $nop = new Stmt\Nop(['comments' => $startAttributes['comments']]); } else { $nop = null; };
-            if ($nop !== null) { $this->semStack[$this->stackPos-(1-1)][] = $nop; } $this->semValue = $this->semStack[$this->stackPos-(1-1)];
+         $startAttributes = $this->lookaheadStartAttributes; if (isset($startAttributes['comments'])) { $nop = new Stmt\Nop(['comments' => $startAttributes['comments']]); } else { $nop = null; }; if ($nop !== null) { $this->semStack[$this->stackPos-(1-1)][] = $nop; } $this->semValue = $this->semStack[$this->stackPos-(1-1)];
     }
 
     protected function reduceRule5() {
@@ -1349,8 +1859,7 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule132() {
-         $startAttributes = $this->lookaheadStartAttributes; if (isset($startAttributes['comments'])) { $nop = new Stmt\Nop(['comments' => $startAttributes['comments']]); } else { $nop = null; };
-            if ($nop !== null) { $this->semStack[$this->stackPos-(1-1)][] = $nop; } $this->semValue = $this->semStack[$this->stackPos-(1-1)];
+         $startAttributes = $this->lookaheadStartAttributes; if (isset($startAttributes['comments'])) { $nop = new Stmt\Nop(['comments' => $startAttributes['comments']]); } else { $nop = null; }; if ($nop !== null) { $this->semStack[$this->stackPos-(1-1)][] = $nop; } $this->semValue = $this->semStack[$this->stackPos-(1-1)];
     }
 
     protected function reduceRule133() {
@@ -1438,35 +1947,35 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule154() {
-         $this->semValue = new Stmt\Foreach_($this->semStack[$this->stackPos-(7-5)], $this->semStack[$this->stackPos-(7-3)][0], ['keyVar' => null, 'byRef' => $this->semStack[$this->stackPos-(7-3)][1], 'stmts' => $this->semStack[$this->stackPos-(7-7)]], $this->startAttributeStack[$this->stackPos-(7-1)] + $this->endAttributes);
-    }
-
-    protected function reduceRule155() {
          $this->semValue = new Stmt\Foreach_($this->semStack[$this->stackPos-(9-3)], $this->semStack[$this->stackPos-(9-7)][0], ['keyVar' => $this->semStack[$this->stackPos-(9-5)], 'byRef' => $this->semStack[$this->stackPos-(9-7)][1], 'stmts' => $this->semStack[$this->stackPos-(9-9)]], $this->startAttributeStack[$this->stackPos-(9-1)] + $this->endAttributes);
     }
 
-    protected function reduceRule156() {
+    protected function reduceRule155() {
          $this->semValue = new Stmt\Declare_($this->semStack[$this->stackPos-(5-3)], $this->semStack[$this->stackPos-(5-5)], $this->startAttributeStack[$this->stackPos-(5-1)] + $this->endAttributes);
     }
 
-    protected function reduceRule157() {
+    protected function reduceRule156() {
          $this->semValue = new Stmt\TryCatch($this->semStack[$this->stackPos-(6-3)], $this->semStack[$this->stackPos-(6-5)], $this->semStack[$this->stackPos-(6-6)], $this->startAttributeStack[$this->stackPos-(6-1)] + $this->endAttributes); $this->checkTryCatch($this->semValue);
     }
 
-    protected function reduceRule158() {
+    protected function reduceRule157() {
          $this->semValue = new Stmt\Throw_($this->semStack[$this->stackPos-(3-2)], $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes);
     }
 
-    protected function reduceRule159() {
+    protected function reduceRule158() {
          $this->semValue = new Stmt\Goto_($this->semStack[$this->stackPos-(3-2)], $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes);
     }
 
-    protected function reduceRule160() {
+    protected function reduceRule159() {
          $this->semValue = new Stmt\Label($this->semStack[$this->stackPos-(2-1)], $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
     }
 
-    protected function reduceRule161() {
+    protected function reduceRule160() {
          $this->semValue = array(); /* means: no statement */
+    }
+
+    protected function reduceRule161() {
+         $this->semValue = new \PhpParser\Node\Stmt\Foreach_($this->semStack[$this->stackPos-(7-5)], $this->semStack[$this->stackPos-(7-3)][0], ['keyVar' => null, 'byRef' => $this->semStack[$this->stackPos-(7-3)][1], 'stmts' => $this->semStack[$this->stackPos-(7-7)]], $this->startAttributeStack[$this->stackPos-(7-1)] + $this->endAttributes);
     }
 
     protected function reduceRule162() {
@@ -1474,8 +1983,7 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule163() {
-         $startAttributes = $this->startAttributeStack[$this->stackPos-(1-1)]; if (isset($startAttributes['comments'])) { $this->semValue = new Stmt\Nop(['comments' => $startAttributes['comments']]); } else { $this->semValue = null; };
-            if ($this->semValue === null) $this->semValue = array(); /* means: no statement */
+         $startAttributes = $this->startAttributeStack[$this->stackPos-(1-1)]; if (isset($startAttributes['comments'])) { $this->semValue = new Stmt\Nop(['comments' => $startAttributes['comments']]); } else { $this->semValue = null; }; if ($this->semValue === null) $this->semValue = array(); /* means: no statement */
     }
 
     protected function reduceRule164() {
@@ -1539,13 +2047,11 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule179() {
-         $this->semValue = new Stmt\Class_($this->semStack[$this->stackPos-(7-2)], ['type' => $this->semStack[$this->stackPos-(7-1)], 'extends' => $this->semStack[$this->stackPos-(7-3)], 'implements' => $this->semStack[$this->stackPos-(7-4)], 'stmts' => $this->semStack[$this->stackPos-(7-6)]], $this->startAttributeStack[$this->stackPos-(7-1)] + $this->endAttributes);
-            $this->checkClass($this->semValue, $this->stackPos-(7-2));
+         $this->semValue = new Stmt\Class_($this->semStack[$this->stackPos-(7-2)], ['type' => $this->semStack[$this->stackPos-(7-1)], 'extends' => $this->semStack[$this->stackPos-(7-3)], 'implements' => $this->semStack[$this->stackPos-(7-4)], 'stmts' => $this->semStack[$this->stackPos-(7-6)]], $this->startAttributeStack[$this->stackPos-(7-1)] + $this->endAttributes); $this->checkClass($this->semValue, $this->stackPos-(7-2));
     }
 
     protected function reduceRule180() {
-         $this->semValue = new Stmt\Interface_($this->semStack[$this->stackPos-(6-2)], ['extends' => $this->semStack[$this->stackPos-(6-3)], 'stmts' => $this->semStack[$this->stackPos-(6-5)]], $this->startAttributeStack[$this->stackPos-(6-1)] + $this->endAttributes);
-            $this->checkInterface($this->semValue, $this->stackPos-(6-2));
+         $this->semValue = new Stmt\Interface_($this->semStack[$this->stackPos-(6-2)], ['extends' => $this->semStack[$this->stackPos-(6-3)], 'stmts' => $this->semStack[$this->stackPos-(6-5)]], $this->startAttributeStack[$this->stackPos-(6-1)] + $this->endAttributes); $this->checkInterface($this->semValue, $this->stackPos-(6-2));
     }
 
     protected function reduceRule181() {
@@ -1889,8 +2395,7 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule266() {
-         $this->semValue = new Stmt\ClassMethod($this->semStack[$this->stackPos-(9-4)], ['type' => $this->semStack[$this->stackPos-(9-1)], 'byRef' => $this->semStack[$this->stackPos-(9-3)], 'params' => $this->semStack[$this->stackPos-(9-6)], 'returnType' => $this->semStack[$this->stackPos-(9-8)], 'stmts' => $this->semStack[$this->stackPos-(9-9)]], $this->startAttributeStack[$this->stackPos-(9-1)] + $this->endAttributes);
-            $this->checkClassMethod($this->semValue, $this->stackPos-(9-1));
+         $this->semValue = new Stmt\ClassMethod($this->semStack[$this->stackPos-(9-4)], ['type' => $this->semStack[$this->stackPos-(9-1)], 'byRef' => $this->semStack[$this->stackPos-(9-3)], 'params' => $this->semStack[$this->stackPos-(9-6)], 'returnType' => $this->semStack[$this->stackPos-(9-8)], 'stmts' => $this->semStack[$this->stackPos-(9-9)]], $this->startAttributeStack[$this->stackPos-(9-1)] + $this->endAttributes); $this->checkClassMethod($this->semValue, $this->stackPos-(9-1));
     }
 
     protected function reduceRule267() {
@@ -2330,9 +2835,7 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule376() {
-         $attrs = $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes;
-            $attrs['kind'] = strtolower($this->semStack[$this->stackPos-(2-1)]) === 'exit' ? Expr\Exit_::KIND_EXIT : Expr\Exit_::KIND_DIE;
-            $this->semValue = new Expr\Exit_($this->semStack[$this->stackPos-(2-2)], $attrs);
+         $attrs = $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes; $attrs['kind'] = strtolower($this->semStack[$this->stackPos-(2-1)]) === 'exit' ? Expr\Exit_::KIND_EXIT : Expr\Exit_::KIND_DIE; $this->semValue = new Expr\Exit_($this->semStack[$this->stackPos-(2-2)], $attrs);
     }
 
     protected function reduceRule377() {
@@ -2376,8 +2879,7 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule387() {
-         $this->semValue = array(new Stmt\Class_(null, ['type' => 0, 'extends' => $this->semStack[$this->stackPos-(7-3)], 'implements' => $this->semStack[$this->stackPos-(7-4)], 'stmts' => $this->semStack[$this->stackPos-(7-6)]], $this->startAttributeStack[$this->stackPos-(7-1)] + $this->endAttributes), $this->semStack[$this->stackPos-(7-2)]);
-            $this->checkClass($this->semValue[0], -1);
+         $this->semValue = array(new Stmt\Class_(null, ['type' => 0, 'extends' => $this->semStack[$this->stackPos-(7-3)], 'implements' => $this->semStack[$this->stackPos-(7-4)], 'stmts' => $this->semStack[$this->stackPos-(7-6)]], $this->startAttributeStack[$this->stackPos-(7-1)] + $this->endAttributes), $this->semStack[$this->stackPos-(7-2)]); $this->checkClass($this->semValue[0], -1);
     }
 
     protected function reduceRule388() {
@@ -2505,13 +3007,11 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule419() {
-         $attrs = $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes; $attrs['kind'] = Expr\Array_::KIND_SHORT;
-            $this->semValue = new Expr\Array_($this->semStack[$this->stackPos-(3-2)], $attrs);
+         $attrs = $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes; $attrs['kind'] = Expr\Array_::KIND_SHORT; $this->semValue = new Expr\Array_($this->semStack[$this->stackPos-(3-2)], $attrs);
     }
 
     protected function reduceRule420() {
-         $attrs = $this->startAttributeStack[$this->stackPos-(4-1)] + $this->endAttributes; $attrs['kind'] = Expr\Array_::KIND_LONG;
-            $this->semValue = new Expr\Array_($this->semStack[$this->stackPos-(4-3)], $attrs);
+         $attrs = $this->startAttributeStack[$this->stackPos-(4-1)] + $this->endAttributes; $attrs['kind'] = Expr\Array_::KIND_LONG; $this->semValue = new Expr\Array_($this->semStack[$this->stackPos-(4-3)], $attrs);
     }
 
     protected function reduceRule421() {
@@ -2519,8 +3019,7 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule422() {
-         $attrs = $this->startAttributeStack[$this->stackPos-(1-1)] + $this->endAttributes; $attrs['kind'] = ($this->semStack[$this->stackPos-(1-1)][0] === "'" || ($this->semStack[$this->stackPos-(1-1)][1] === "'" && ($this->semStack[$this->stackPos-(1-1)][0] === 'b' || $this->semStack[$this->stackPos-(1-1)][0] === 'B')) ? Scalar\String_::KIND_SINGLE_QUOTED : Scalar\String_::KIND_DOUBLE_QUOTED);
-            $this->semValue = new Scalar\String_(Scalar\String_::parse($this->semStack[$this->stackPos-(1-1)]), $attrs);
+         $attrs = $this->startAttributeStack[$this->stackPos-(1-1)] + $this->endAttributes; $attrs['kind'] = ($this->semStack[$this->stackPos-(1-1)][0] === "'" || ($this->semStack[$this->stackPos-(1-1)][1] === "'" && ($this->semStack[$this->stackPos-(1-1)][0] === 'b' || $this->semStack[$this->stackPos-(1-1)][0] === 'B')) ? Scalar\String_::KIND_SINGLE_QUOTED : Scalar\String_::KIND_DOUBLE_QUOTED); $this->semValue = new Scalar\String_(Scalar\String_::parse($this->semStack[$this->stackPos-(1-1)]), $attrs);
     }
 
     protected function reduceRule423() {
@@ -2572,23 +3071,19 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule435() {
-         $attrs = $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes; $attrs['kind'] = strpos($this->semStack[$this->stackPos-(3-1)], "'") === false ? Scalar\String_::KIND_HEREDOC : Scalar\String_::KIND_NOWDOC; preg_match('/\A[bB]?<<<[ \t]*[\'"]?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)[\'"]?(?:\r\n|\n|\r)\z/', $this->semStack[$this->stackPos-(3-1)], $matches); $attrs['docLabel'] = $matches[1];;
-            $this->semValue = new Scalar\String_(Scalar\String_::parseDocString($this->semStack[$this->stackPos-(3-1)], $this->semStack[$this->stackPos-(3-2)]), $attrs);
+         $attrs = $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes; $attrs['kind'] = strpos($this->semStack[$this->stackPos-(3-1)], "'") === false ? Scalar\String_::KIND_HEREDOC : Scalar\String_::KIND_NOWDOC; preg_match('/\A[bB]?<<<[ \t]*[\'"]?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)[\'"]?(?:\r\n|\n|\r)\z/', $this->semStack[$this->stackPos-(3-1)], $matches); $attrs['docLabel'] = $matches[1];; $this->semValue = new Scalar\String_(Scalar\String_::parseDocString($this->semStack[$this->stackPos-(3-1)], $this->semStack[$this->stackPos-(3-2)]), $attrs);
     }
 
     protected function reduceRule436() {
-         $attrs = $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes; $attrs['kind'] = strpos($this->semStack[$this->stackPos-(2-1)], "'") === false ? Scalar\String_::KIND_HEREDOC : Scalar\String_::KIND_NOWDOC; preg_match('/\A[bB]?<<<[ \t]*[\'"]?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)[\'"]?(?:\r\n|\n|\r)\z/', $this->semStack[$this->stackPos-(2-1)], $matches); $attrs['docLabel'] = $matches[1];;
-            $this->semValue = new Scalar\String_('', $attrs);
+         $attrs = $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes; $attrs['kind'] = strpos($this->semStack[$this->stackPos-(2-1)], "'") === false ? Scalar\String_::KIND_HEREDOC : Scalar\String_::KIND_NOWDOC; preg_match('/\A[bB]?<<<[ \t]*[\'"]?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)[\'"]?(?:\r\n|\n|\r)\z/', $this->semStack[$this->stackPos-(2-1)], $matches); $attrs['docLabel'] = $matches[1];; $this->semValue = new Scalar\String_('', $attrs);
     }
 
     protected function reduceRule437() {
-         $attrs = $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes; $attrs['kind'] = Scalar\String_::KIND_DOUBLE_QUOTED;
-            foreach ($this->semStack[$this->stackPos-(3-2)] as $s) { if ($s instanceof Node\Scalar\EncapsedStringPart) { $s->value = Node\Scalar\String_::parseEscapeSequences($s->value, '"', true); } }; $this->semValue = new Scalar\Encapsed($this->semStack[$this->stackPos-(3-2)], $attrs);
+         $attrs = $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes; $attrs['kind'] = Scalar\String_::KIND_DOUBLE_QUOTED; foreach ($this->semStack[$this->stackPos-(3-2)] as $s) { if ($s instanceof Node\Scalar\EncapsedStringPart) { $s->value = Node\Scalar\String_::parseEscapeSequences($s->value, '"', true); } }; $this->semValue = new Scalar\Encapsed($this->semStack[$this->stackPos-(3-2)], $attrs);
     }
 
     protected function reduceRule438() {
-         $attrs = $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes; $attrs['kind'] = strpos($this->semStack[$this->stackPos-(3-1)], "'") === false ? Scalar\String_::KIND_HEREDOC : Scalar\String_::KIND_NOWDOC; preg_match('/\A[bB]?<<<[ \t]*[\'"]?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)[\'"]?(?:\r\n|\n|\r)\z/', $this->semStack[$this->stackPos-(3-1)], $matches); $attrs['docLabel'] = $matches[1];;
-            foreach ($this->semStack[$this->stackPos-(3-2)] as $s) { if ($s instanceof Node\Scalar\EncapsedStringPart) { $s->value = Node\Scalar\String_::parseEscapeSequences($s->value, null, true); } } $s->value = preg_replace('~(\r\n|\n|\r)\z~', '', $s->value); if ('' === $s->value) array_pop($this->semStack[$this->stackPos-(3-2)]);; $this->semValue = new Scalar\Encapsed($this->semStack[$this->stackPos-(3-2)], $attrs);
+         $attrs = $this->startAttributeStack[$this->stackPos-(3-1)] + $this->endAttributes; $attrs['kind'] = strpos($this->semStack[$this->stackPos-(3-1)], "'") === false ? Scalar\String_::KIND_HEREDOC : Scalar\String_::KIND_NOWDOC; preg_match('/\A[bB]?<<<[ \t]*[\'"]?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)[\'"]?(?:\r\n|\n|\r)\z/', $this->semStack[$this->stackPos-(3-1)], $matches); $attrs['docLabel'] = $matches[1];; foreach ($this->semStack[$this->stackPos-(3-2)] as $s) { if ($s instanceof Node\Scalar\EncapsedStringPart) { $s->value = Node\Scalar\String_::parseEscapeSequences($s->value, null, true); } } $s->value = preg_replace('~(\r\n|\n|\r)\z~', '', $s->value); if ('' === $s->value) array_pop($this->semStack[$this->stackPos-(3-2)]);; $this->semValue = new Scalar\Encapsed($this->semStack[$this->stackPos-(3-2)], $attrs);
     }
 
     protected function reduceRule439() {
@@ -2792,11 +3287,11 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule489() {
-         $this->semValue = new \Phx\Parser\Node\Expr\UnpackArrayItem($this->semStack[$this->stackPos-(2-2)], null, false, $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
+         $this->semValue = null;
     }
 
     protected function reduceRule490() {
-         $this->semValue = null;
+         $this->semValue = new Phx\Parser\Node\Expr\UnpackArrayItem($this->semStack[$this->stackPos-(2-2)], null, false, $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
     }
 
     protected function reduceRule491() {

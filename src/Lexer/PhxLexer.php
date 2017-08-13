@@ -16,7 +16,8 @@ class PhxLexer extends Emulative
 		'in' => Tokens::T_IN,
 	];
 
-	public function __construct(array $options = array()) {
+	public function __construct(array $options = [])
+    {
 		parent::__construct($options);
 
 		$this->newKeywords += self::PHX_KEYWORDS;
@@ -27,8 +28,11 @@ class PhxLexer extends Emulative
 		parent::startLexing(strtr($code, ['<?phx' => '<?php']), $errorHandler);
 	}
 
-	protected function requiresEmulation($code) {
-		if (preg_match('(<\?phx|'.implode('|',array_keys(self::PHX_KEYWORDS)).')', $code)) {
+	protected function requiresEmulation($code)
+    {
+        return true;
+        echo '(?:<\?phx|'.implode('|',array_keys(self::PHX_KEYWORDS)).')'; exit;
+        if (preg_match('(?:<\?phx|'.implode('|',array_keys(self::PHX_KEYWORDS)).')', $code)) {
 			return true;
 		}
 
