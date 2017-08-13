@@ -30,3 +30,7 @@ $ vendor/bin/phx your_script.phx
 
 If you want to use PHX with `composer` autoloading please install the `phx/composer-phx-plugin`.
 It will add PHX autoloading support to composer.
+
+## Documentation
+
+There's a [`doc`](./doc/) dir with useful information.

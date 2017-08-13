@@ -1,6 +1,6 @@
 # Spread operator
 
-PHP already knows the spread operator for unpacking arguments from an array for a method call:
+PHP already knows the spread operator for unpacking arguments out of an array for a method call:
 
 ```php
 <?php
@@ -11,7 +11,7 @@ $obj = new Object(...$args);
 // Same as: $obj = new Object('foo', 'bar', 'baz');
 ```
 
-PHX increases the support for the spread operator. The usability in arrays is allowed to:
+PHX increases the support for the spread operator. The usability in arrays is allowed too:
 
 ```php
 <?phx
