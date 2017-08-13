@@ -31,6 +31,14 @@ $ vendor/bin/phx your_script.phx
 If you want to use PHX with `composer` autoloading please install the [**phx/composer-phx-plugin**](https://github.com/phxlang/composer-phx-plugin).
 It will add PHX autoloading support to composer.
 
+## Tests
+
+Yes there are a few integration tests. Run them in the project root:
+
+```bash
+$ vendor/bin/phpunit
+```
+
 ## Documentation
 
 There's a [**doc**](./doc/) dir with useful information.
