@@ -4,7 +4,7 @@
 /** @var \Composer\Autoload\ClassLoader|null $loader */
 $loader = null;
 
-foreach ([__DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php'] as $file) {
+foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../../vendor/autoload.php', __DIR__ . '/../vendor/autoload.php'] as $file) {
 	if (true === file_exists($file)) {
         $loader = require_once $file;
 		break;
