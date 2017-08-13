@@ -42,7 +42,7 @@ class SpreadExtension implements RuleExtension, VisitorExtension
 
             $group->list[] = new Rule(
                 'T_ELLIPSIS expr',
-                new Action('$$ = '.UnpackArrayItem::class.'[$2, null, false];', [])
+                new Action('$$ = \\'.UnpackArrayItem::class.'[$2, null, false];', [])
             );
             break;
         }
