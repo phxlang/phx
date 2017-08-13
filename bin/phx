@@ -42,7 +42,7 @@ if ($argc === 0) {
     }
 
     $transpiler = \Phx\Common\PhxTranspilerBuilder::create()->build();
-    evalCode($transpiler->fromString('<?php ' . $argv[1]), $loader);
+    eval($transpiler->fromString('<?php ' . $argv[1]));
     exit(0);
 } else {
 	$scriptPath = realpath($argv[0]);
@@ -57,7 +57,7 @@ if ($argc === 0) {
     $code = $transpiler->fromFile($scriptPath);
 
 	file_put_contents(getcwd().'/dump.php', '<?php'.PHP_EOL.$code);
-    evalCode($code, $loader);
+    eval($code);
 	exit(0);
 }
 
@@ -67,10 +67,4 @@ function printHelp(): string
     echo '   -r <code>  Run PHP <code> without using script tags <?..?>' , PHP_EOL;
     echo '   -v         Version number' , PHP_EOL;
     exit(0);
-}
-
-function evalCode(string $code, \Composer\Autoload\ClassLoader $loader)
-{
-    $loader->unregister();
-    eval($code);
 }
