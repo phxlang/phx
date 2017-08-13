@@ -1,5 +1,6 @@
 {
-    "name": "phx/phx",
+    "name": "phxlang/phx",
+    "description": "AST-based syntax extension for PHP",
     "license": "MIT",
     "require": {
         "nikic/php-parser": "^3.0"
