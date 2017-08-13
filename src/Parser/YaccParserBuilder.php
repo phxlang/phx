@@ -6,6 +6,11 @@ use Phx\Extension\Extension;
 use Phx\Extension\TokenExtension;
 use Phx\Parser\Node\Expr\UnpackArrayItem;
 
+/**
+ * This file is copied from the PHP-Parser package.
+ *
+ * (c) Nikita Popov
+ */
 class YaccParserBuilder
 {
 

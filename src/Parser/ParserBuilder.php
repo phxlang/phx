@@ -10,6 +10,11 @@ use Phx\Yacc\Lexer\YaccLexer;
 use Phx\Yacc\Parser\Definition;
 use Phx\Yacc\Printer\Pretty;
 
+/**
+ * This file is copied from the PHP-Parser package.
+ *
+ * (c) Nikita Popov
+ */
 class ParserBuilder
 {
 
