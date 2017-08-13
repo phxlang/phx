@@ -3291,7 +3291,7 @@ class Phx extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule490() {
-         $this->semValue = new Phx\Parser\Node\Expr\UnpackArrayItem($this->semStack[$this->stackPos-(2-2)], null, false, $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
+         $this->semValue = new \Phx\Parser\Node\Expr\UnpackArrayItem($this->semStack[$this->stackPos-(2-2)], null, false, $this->startAttributeStack[$this->stackPos-(2-1)] + $this->endAttributes);
     }
 
     protected function reduceRule491() {
