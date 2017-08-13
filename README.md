@@ -7,7 +7,13 @@ PHX (**PH**P Ne**X**t) is a language extension of PHP. While PHP is fully suppor
 Install PHX simply by adding the dependency to the project's `composer.json`.
 
 ```
-composer require phx/phx
+composer require phxlang/phx
+```
+
+Or install it globally:
+
+```
+composer global require phxlang/phx
 ```
 
 ## Usage
