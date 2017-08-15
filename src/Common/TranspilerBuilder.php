@@ -74,7 +74,10 @@ class TranspilerBuilder
 	 */
 	public function registerExtension(Extension $extension)
 	{
-		$this->extensions[] = $extension;
+	    if (true === $extension->supports(PHP_VERSION_ID)) {
+            $this->extensions[] = $extension;;
+        }
+
 		return $this;
 	}
 

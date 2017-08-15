@@ -52,4 +52,13 @@ class ForInExtension implements RuleExtension, TokenExtension
     {
         $tokens['in'] = self::T_IN;
     }
+
+    /**
+     * @param int $phpVersion
+     * @return bool
+     */
+    public function supports(int $phpVersion): bool
+    {
+        return true;
+    }
 }

@@ -106,7 +106,7 @@ class ArraySpreadVisitor extends NodeVisitorAbstract
             if (true === $unpack->value instanceof Node\Expr\Variable) {
                 $this->uses[$unpack->value->name] = $unpack->value;
             } elseif (
-                true === $unpack->value instanceof  Node\Expr\MethodCall
+                true === $unpack->value instanceof Node\Expr\MethodCall
                 && true === $unpack->value->var instanceof Node\Expr\Variable
             ) {
                 $this->uses[$unpack->value->var->name] = $unpack->value->var;

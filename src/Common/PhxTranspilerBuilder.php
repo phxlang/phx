@@ -2,6 +2,7 @@
 
 namespace Phx\Common;
 
+use Phx\Extension\NullableType\NullableTypeExtension;
 use PhpParser\PrettyPrinter\Standard;
 use Phx\Extension\ForIn\ForInExtension;
 use Phx\Extension\Spread\SpreadExtension;
@@ -21,6 +22,7 @@ class PhxTranspilerBuilder extends TranspilerBuilder
             ->setParser(new Phx(new PhxLexer()))
             ->registerExtension(new SpreadExtension())
             ->registerExtension(new ForInExtension())
+            ->registerExtension(new NullableTypeExtension())
         ;
     }
 

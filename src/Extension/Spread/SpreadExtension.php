@@ -47,4 +47,13 @@ class SpreadExtension implements RuleExtension, VisitorExtension
             break;
         }
     }
+
+    /**
+     * @param int $phpVersion
+     * @return bool
+     */
+    public function supports(int $phpVersion): bool
+    {
+        return true;
+    }
 }

@@ -3,6 +3,7 @@
     "description": "AST-based syntax extension for PHP",
     "license": "MIT",
     "require": {
+        "php": ">=7.0.0",
         "nikic/php-parser": "^3.0"
     },
     "require-dev": {
