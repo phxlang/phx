@@ -16,7 +16,7 @@ class Definition extends AbstractNode
     public $tokens;
 
     /**
-     * @var RuleGroup[]
+     * @var RuleSet[]
      */
     public $rules;
 

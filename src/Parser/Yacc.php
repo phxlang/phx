@@ -221,7 +221,7 @@ class Yacc extends \PhpParser\ParserAbstract
     }
 
     protected function reduceRule13() {
-         $this->semValue = new \Phx\Yacc\Parser\RuleGroup($this->semStack[$this->stackPos-(4-1)], $this->semStack[$this->stackPos-(4-3)], $this->startAttributeStack[$this->stackPos-(4-1)] + $this->endAttributes);
+         $this->semValue = new \Phx\Yacc\Parser\RuleSet($this->semStack[$this->stackPos-(4-1)], $this->semStack[$this->stackPos-(4-3)], $this->startAttributeStack[$this->stackPos-(4-1)] + $this->endAttributes);
     }
 
     protected function reduceRule14() {

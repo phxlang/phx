@@ -5,29 +5,48 @@ namespace Phx\Yacc\Parser;
 /**
  * @author Pascal Muenst <pascal@timesplinter.ch>
  */
-class Rule extends AbstractNode
+class Rule
 {
 
     /**
      * @var string
      */
-    public $ruleParts;
+    private $rulePart;
 
     /**
      * @var Action|null
      */
-    public $action;
+    private $action;
 
     /**
-     * Rule constructor.
-     * @param string|null $ruleParts
-     * @param Action|null $action
-     * @param array $attributes
+     * @param string $rulePart
      */
-    public function __construct($ruleParts, Action $action = null, array $attributes = [])
+    public function __construct(string $rulePart)
     {
-        parent::__construct($attributes);
-        $this->ruleParts = $ruleParts;
+        $this->rulePart = $rulePart;
+    }
+
+    /**
+     * @param Action $action
+     */
+    public function setAction(Action $action): void
+    {
         $this->action = $action;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRulePart(): string
+    {
+        return $this->rulePart;
+    }
+
+    /**
+     * @return null|Action
+     */
+    public function getAction()
+    {
+        return $this->action;
     }
 }

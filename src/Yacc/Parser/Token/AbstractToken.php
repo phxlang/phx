@@ -2,27 +2,44 @@
 
 namespace Phx\Yacc\Parser\Token;
 
-use Phx\Yacc\Parser\AbstractNode;
-
 /**
  * @author Pascal Muenst <pascal@timesplinter.ch>
  */
-abstract class AbstractToken extends AbstractNode
+abstract class AbstractToken
 {
 
     /**
-     * @var string[]
+     * @var array|string[]
      */
-    public $names;
+    private $names = [];
 
     /**
-     * Token constructor.
-     * @param array $names
-     * @param array $attributes
+     * @return array|string[]
      */
-    public function __construct(array $names, array $attributes)
+    public function getNames()
     {
-        parent::__construct($attributes);
-        $this->names = $names;
+        return $this->names;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function addName(string $name): void
+    {
+        $this->names[] = $name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function removeName(string $name): void
+    {
+        if (false === $pos = array_search($name, $this->names, true)) {
+            return;
+        }
+
+        unset($this->names[$pos]);
+
+        $this->names = array_values($this->names);
     }
 }

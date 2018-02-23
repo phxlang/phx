@@ -2,10 +2,16 @@
 
 namespace Phx\Parser;
 
+use PhpYacc\Generator;
+use PhpYacc\Grammar\Context;
+use PhpYacc\Yacc\Lexer;
+use PhpYacc\Yacc\MacroSet;
+use PhpYacc\Yacc\Parser;
 use Phx\Extension\Extension;
 use Phx\Extension\RuleExtension;
 use Phx\Extension\TokenExtension;
 use Phx\Parser\Node\Expr\UnpackArrayItem;
+use Phx\Yacc\GrammarFactory;
 use Phx\Yacc\Lexer\YaccLexer;
 use Phx\Yacc\Parser\Definition;
 use Phx\Yacc\Printer\Pretty;
@@ -70,14 +76,15 @@ class ParserBuilder
 
 		$tokens = file_get_contents($tokensFile);
 
-        $yaccParser = new Yacc(new YaccLexer());
-        $yaccPrinter = new Pretty();
-
 		foreach ($grammarFileToName as $grammarFile => $name) {
 			echo "Building temporary $name grammar file.\n";
 
 			$grammarCode = file_get_contents($grammarFile);
 			$grammarCode = str_replace('%tokens', $tokens, $grammarCode);
+
+            $grammar = GrammarFactory::fromString($grammarCode);
+            var_dump($grammar->tokens);
+            die('almost done');
 
 			/** @var Definition $parsedYacc */
 			$parsedYacc = $yaccParser->parse($grammarCode);

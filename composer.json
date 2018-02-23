@@ -2,11 +2,15 @@
     "name": "phxlang/phx",
     "description": "AST-based syntax extension for PHP",
     "license": "MIT",
+    "repositories": [
+        {"type": "vcs", "no-api": true, "url": "https://github.com/ircmaxell/PHP-Yacc.git"}
+    ],
     "require": {
-        "nikic/php-parser": "^3.0"
+        "nikic/php-parser": "^3.0",
+        "ircmaxell/php-yacc": "dev-master"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.2"
+        "phpunit/phpunit": "^7.0"
     },
     "bin": [
         "bin/phx"

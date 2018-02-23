@@ -7,7 +7,7 @@ use Phx\Extension\TokenExtension;
 use Phx\Extension\RuleExtension;
 use Phx\Yacc\Parser\Action;
 use Phx\Yacc\Parser\Rule;
-use Phx\Yacc\Parser\RuleGroup;
+use Phx\Yacc\Parser\RuleSet;
 use Phx\Yacc\Parser\Token\Token;
 
 /**
@@ -19,18 +19,18 @@ class ForInExtension implements RuleExtension, TokenExtension
     const T_IN = 'T_IN';
 
     /**
-     * @param RuleGroup[] $ruleGroups
+     * @param RuleSet[] $ruleGroups
      */
     public function modifyYaccRules(array &$ruleGroups)
     {
         foreach ($ruleGroups as $group) {
             if ($group->name === 'non_empty_statement') {
-                $group->list[] = new Rule(
+                $group->rules[] = new Rule(
                     "T_FOR '(' foreach_variable ".self::T_IN." expr ')' foreach_statement",
                     new Action("$$ = \\".Foreach_::class."[$5, $3[0], ['keyVar' => null, 'byRef' => $3[1], 'stmts' => $7]];")
                 );
             } elseif ($group->name === 'reserved_non_modifiers') {
-                $group->list[] = new Rule(self::T_IN, null, []);
+                $group->rules[] = new Rule(self::T_IN, null, []);
             }
         }
     }

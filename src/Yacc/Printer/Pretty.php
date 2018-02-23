@@ -6,7 +6,7 @@ use Phx\Yacc\Parser\AbstractNode;
 use Phx\Yacc\Parser\Definition;
 use Phx\Yacc\Parser\PureParser;
 use Phx\Yacc\Parser\Rule;
-use Phx\Yacc\Parser\RuleGroup;
+use Phx\Yacc\Parser\RuleSet;
 use Phx\Yacc\Parser\Token\AbstractToken;
 use Phx\Yacc\Parser\Expect;
 use Phx\Yacc\Parser\Token\Left;
@@ -65,19 +65,19 @@ class Pretty
             $definitionStr .= $this->prettyPrint($node->programs);
 
             return $definitionStr;
-        } elseif ($node instanceof RuleGroup) {
+        } elseif ($node instanceof RuleSet) {
             return $this->printRuleGroup($node) . PHP_EOL . PHP_EOL;
         } else {
             return 'UNKNOWN: ' . get_class($node) . PHP_EOL;
         }
     }
 
-    protected function printRuleGroup(RuleGroup $ruleGroup): string
+    protected function printRuleGroup(RuleSet $ruleGroup): string
     {
         $str = $ruleGroup->name . ':' . PHP_EOL;
 
         $i = 0;
-        foreach ($ruleGroup->list as $rule) {
+        foreach ($ruleGroup->rules as $rule) {
             $preRule = $i === 0 ? '      ' : '    | ';
             $str .= $preRule . $this->printRule($rule) . PHP_EOL;
             ++$i;
