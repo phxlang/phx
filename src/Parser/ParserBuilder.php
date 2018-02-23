@@ -2,6 +2,8 @@
 
 namespace Phx\Parser;
 
+use PhpYacc\Generator;
+use PhpYacc\Grammar\Context;
 use Phx\Extension\Extension;
 use Phx\Extension\RuleExtension;
 use Phx\Extension\TokenExtension;
@@ -72,6 +74,7 @@ class ParserBuilder
 
         $yaccParser = new Yacc(new YaccLexer());
         $yaccPrinter = new Pretty();
+        $parserGenerator = new Generator();
 
 		foreach ($grammarFileToName as $grammarFile => $name) {
 			echo "Building temporary $name grammar file.\n";
@@ -82,7 +85,6 @@ class ParserBuilder
 			/** @var Definition $parsedYacc */
 			$parsedYacc = $yaccParser->parse($grammarCode);
 
-			// @todo apply changes from $this->extensions
             foreach ($this->extensions as $extension) {
                 echo 'Register extension: '.get_class($extension)."\n";
                 if ($extension instanceof RuleExtension) {
@@ -95,39 +97,27 @@ class ParserBuilder
             }
 
 			$grammarCode = $yaccPrinter->prettyPrint([$parsedYacc]);
-			$grammarCode = $this->resolveNodes($grammarCode);
-			$grammarCode = $this->resolveMacros($grammarCode);
-			$grammarCode = $this->resolveStackAccess($grammarCode);
+            $debugFile = $optionDebug ? fopen($grammarDir . '/y.phpyacc.output', 'w') : null;
 
-			file_put_contents(getcwd().'/jesus.yacc', $grammarCode);
-			file_put_contents($tmpGrammarFile, $grammarCode);
+            $context = new Context($name, $debugFile);
+            $context->pspref = $name;
 
-			//file_put_contents('dump.y', $grammarCode);
+            $resultFile = $resultDir.'/'.$name.'.php';
 
-			$additionalArgs = $optionDebug ? '-t -v' : '';
+            echo "Building $name parser.\n";
 
-			echo "Building $name parser.\n";
-			$output = trim(shell_exec("$kmyacc $additionalArgs -l -m $skeletonFile -p $name $tmpGrammarFile 2>&1"));
-			echo "Output: \"$output\"\n";
+            $parserGenerator->generate(
+                $context,
+                $grammarCode,
+                file_get_contents($skeletonFile),
+                $resultFile
+            );
 
-			$resultCode = file_get_contents($tmpResultFile);
-			$resultCode = strtr($resultCode, ['namespace PhpParser\Parser;' => 'namespace '.__NAMESPACE__.';']);
-			$resultCode = $this->removeTrailingWhitespace($resultCode);
+            $resultCode = file_get_contents($resultFile);
+            $resultCode = strtr($resultCode, ['namespace PhpParser\Parser;' => 'namespace '.__NAMESPACE__.';']);
+            file_put_contents($resultFile, $resultCode);
 
-			$this->ensureDirExists($resultDir);
-			file_put_contents("$resultDir/$name.php", $resultCode);
-			unlink($tmpResultFile);
-
-			echo "Building token definition.\n";
-			$output = trim(shell_exec("$kmyacc -l -m $tokensTemplate $tmpGrammarFile 2>&1"));
-			assert($output === '');
-			$resultCode = file_get_contents($tmpResultFile);
-			$resultCode = strtr($resultCode, ['namespace PhpParser\Parser;' => 'namespace '.__NAMESPACE__.';']);
-			file_put_contents($tokensResultsFile, $resultCode);
-
-			if (!$optionKeepTmpGrammar) {
-				unlink($tmpGrammarFile);
-			}
+			echo "Done.\n";
 		}
 	}
 
